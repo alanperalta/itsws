@@ -11,10 +11,10 @@
                 <div id="output"></div>
                 <div class="avatar"></div>
                 <div class="form-box">
-                    <form action="" method="">
+                    <form action="POST" method="controller/login.php">
                         <input name="user" type="text" placeholder="Usuario">
                         <input type="password" name="password" placeholder="Contrase&ntilde;a">
-                        <select name="dbName" placeholder="Contrase&ntilde;a" id="base" class="form-control">
+                        <select name="dbName" placeholder="Contrase&ntilde;a" id="dbName" class="form-control">
                             <option value="TGROUP">TGROUP</option>
                             <option value="LILIANA">LILIANA</option>
                         </select>
