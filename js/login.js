@@ -14,9 +14,10 @@ var pass = $("input[name=password]");
                         data:  parametros,
                         url:   'controller/login.php',
                         type:  'post',
-                        complete:  function (response) {
+                        dataType: 'json'
+                    }).done( function (response) {
+//                        alert(response.message +' '+response.error);
                             if(!response.error){
-                                alert(response);
                                 $("#output").addClass("alert alert-success animated fadeInUp").html("Bienvenido/a " + "<span style='text-transform:uppercase'>" + user.val() + "</span>");
                                 $("#output").removeClass(' alert-danger');
                                 $("input, select").css({
@@ -42,7 +43,7 @@ var pass = $("input[name=password]");
                             $("#output").addClass("alert alert-danger animated fadeInUp").html(response.message);
                         }
                         }
-                    });
+                    );
                     
                     //show avatar
                     $(".avatar").css({

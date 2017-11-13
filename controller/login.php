@@ -21,9 +21,8 @@
     
     $data = array();
     $data['error'] = $do_login['error'];
-    $data['message'] = $do_login['message'];
+    $data['message'] = utf8_encode($do_login['message']);
     
-    header('Content-type: application/json; charset=utf-8');
-    echo json_encode($data, JSON_FORCE_OBJECT);
+    echo json_encode($data);
     
     
