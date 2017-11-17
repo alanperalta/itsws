@@ -17,6 +17,6 @@
 	 */
 	
 	$ws = 'http://179.43.113.106/ITSWS/ItsCliSvrWS.asmx?WSDL';
-	$db = "TGROUP";
+	/*$db = "TGROUP";
 	$user = "alan";
-	$pass = "x1234567";
+	$pass = "x1234567";*/
