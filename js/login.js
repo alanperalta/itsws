@@ -12,31 +12,13 @@ var pass = $("input[name=password]");
                     };
                     $.ajax({
                         data:  parametros,
-                        url:   'controller/login.php',
+                        url:   '../controller/login.php',
                         type:  'post',
                         dataType: 'json'
                     }).done( function (response) {
 //                        alert(response.message +' '+response.error);
                             if(!response.error){
-                                $("#output").addClass("alert alert-success animated fadeInUp").html("Bienvenido/a " + "<span style='text-transform:uppercase'>" + user.val() + "</span>");
-                                $("#output").removeClass(' alert-danger');
-                                $("input, select").css({
-                                    "height":"0",
-                                    "padding":"0",
-                                    "margin":"0",
-                                    "opacity":"0"
-                                });
-                            //change button text 
-                                $('button[type="submit"]').html("Ventas Pendientes")
-                                .removeClass("btn-info")
-                                .addClass("btn-default").click(function(){
-                                    $("input, select").css({
-                                        "height":"auto",
-                                        "padding":"10px",
-                                        "opacity":"1"
-                                    }).val("");
-                                    $('button[type="submit"]').html("Ingresar");
-                                });
+                                window.location.replace("menu.php");
                         }else{
                             //remove success mesage replaced with error message
                             $("#output").removeClass(' alert alert-success');

@@ -22,6 +22,11 @@
     $data = array();
     $data['error'] = $do_login['error'];
     $data['message'] = utf8_encode($do_login['message']);
+    if($data['error'] <> 1){
+        session_start();
+        $_SESSION['login'] = TRUE;
+        $_SESSION['user'] = $user;
+    }
     
     echo json_encode($data);
     
