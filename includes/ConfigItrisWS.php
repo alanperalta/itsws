@@ -1,22 +1,53 @@
 <?php
-
-	/* 
-		Configuración de conexión a WebService.
-
-		PARAMS
-		---------------
-
-
-		$ws 	--> Ruta de conexión a WebService
-		$db 	--> Base de datos con la que se establecerá la conexión. Debe estar activa en la ruta {$ws}
-		$user 	--> Usuario de conexión. Debe tener licencia activa en la base de datos {$db} donde se establecerá 				la conexión.
-		$pass 	--> Contraseña de conexión de {$user}
-
-
-		---------------
-	 */
-	
+        ini_set('max_execution_time', 0);
+        require_once('../includes/ItrisSDK.php');
 	$ws = 'http://179.43.113.106/ITSWS/ItsCliSvrWS.asmx?WSDL';
-	/*$db = "TGROUP";
-	$user = "alan";
-	$pass = "x1234567";*/
+        
+        function login($db, $user, $pass) {
+            $ws = 'http://179.43.113.106/ITSWS/ItsCliSvrWS.asmx?WSDL';
+
+            $Itris = new Itris;
+
+            // Creación del cliente SOAP con $ws. Instancia $soapClient por referencia en ItrisSDK.
+            $client = $Itris->ItsCreateClient( $ws , $soapClient );
+
+            if($client['error']){
+                    $do_login = array();
+                    $do_login['error'] = TRUE;
+                    $do_login['message'] = $client['message'];
+                    return $do_login;
+            }
+
+            /*--------------------------------------------------
+
+                    Ejecuta el método ItsLogin instanciado en la clase Itris.
+                    Recibe como parámetros obligatorios:
+                    {
+                            $soapClient: Instanciado por referencia en ItrisSDK,
+                            $db,
+                            $user,
+                            $pass
+                    }
+
+            ----------------------------------------------------*/
+            $do_login = $Itris->ItsLogin( $soapClient , $db , $user , $pass , $UserSession );
+            return $do_login;
+        }
+        
+        function logout($userSession){
+            $ws = 'http://179.43.113.106/ITSWS/ItsCliSvrWS.asmx?WSDL';
+
+            $Itris = new Itris;
+
+            // Creación del cliente SOAP con $ws. Instancia $soapClient por referencia en ItrisSDK.
+            $client = $Itris->ItsCreateClient( $ws , $soapClient );
+
+            if($client['error']){
+                    $do_logout = array();
+                    $do_logout['error'] = TRUE;
+                    $do_logout['message'] = $client['message'];
+                    return $do_logout;
+            }
+            $do_logout = $Itris->ItsLogout( $soapClient , $userSession );
+            return $do_logout;
+        }
