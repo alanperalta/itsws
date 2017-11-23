@@ -10,11 +10,25 @@
                 
 		$get_data = $Itris->ItsGetData( $soapClient ,  $UserSession , 'ERP_PEN_VEN_IMP', 10, '', 'RAZON_SOCIAL ASC');
 		if(!$get_data['error']) {
-                        $group = array();
-
-                        foreach ( $get_data['data']->ROWDATA->ROW as $value ) {
-                            $group[$value['FK_ERP_EMPRESAS']][] = $value;
+                        $primero = true;
+                        $saldo = 0;
+                        $datos = array();
+                        foreach ($get_data['data']->ROWDATA->ROW as $key => $row ) {
+                            if($primero){
+                                $primero = FALSE;
+                                $empresa = (string)$row['FK_ERP_EMPRESAS'];
+                                $razSoc = (string)$row['RAZON_SOCIAL'];
+                                $saldo += (real)$row['SALDO'];
+                            }elseif ($empresa == (string)$row['FK_ERP_EMPRESAS']) {
+                                $saldo += (real)$row['SALDO'];
+                            }else{
+                                $datos[] = array('EMPRESA' => $empresa, 'SALDO' => $saldo, 'RAZON_SOCIAL' => $razSoc);
+                                $empresa = (string)$row['FK_ERP_EMPRESAS'];
+                                $razSoc = (string)$row['RAZON_SOCIAL'];
+                                $saldo = (real)$row['SALDO'];
+                            }
                         }
+                        $datos[] = array('EMPRESA' => $empresa, 'SALDO' => $saldo, 'RAZON_SOCIAL' => $razSoc);
 
                 
 			$do_logout = logout($UserSession);

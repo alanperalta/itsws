@@ -7,6 +7,7 @@
         <title>TGroup Web Version</title>
         <?php include_once '../includes/meta-data.php';?>
         <link rel="stylesheet" type="text/css" href="../css/menu.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/contenido.css"/>
         <script type="text/javascript" src="../js/menu.js"></script>
     </header>
     <body>
