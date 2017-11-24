@@ -9,21 +9,20 @@
             <?php $i = 1; foreach ($datos as $key => $row) { ?>
             <li class="list-group-item <?=($row['SALDO'] <= 0)?"list-green":"list-red"?>">
                 <div class="row toggle" id="dropdown-detail-<?=$i?>" data-toggle="detail-<?=$i?>">
-                    <div class="col-xs-10">
+                    <div class="col-xs-8">
                         <?php echo $row['RAZON_SOCIAL']."(".$row['EMPRESA']."): $".number_format($row['SALDO'],2,',','.');?>
                     </div>
                     <div class="col-xs-2"><i class="fa fa-chevron-down pull-right"></i></div>
                 </div>
                 <div id="detail-<?=$i?>">
-                    <hr></hr>
+                    <br/>
                     <div class="container">
-                        <div class="fluid-row">
-                            <table>
+                            <table class="table table-responsive">
                                 <tr>
-                                    <td>Fecha</td>
-                                    <td>Nro</td>
-                                    <td>Importe</td>
-                                    <td>Saldo</td>
+                                    <th>Fecha</th>
+                                    <th>Nro</th>
+                                    <th>Importe</th>
+                                    <th>Saldo</th>
                                 </tr>
                                 <?php foreach ($get_data['data']->ROWDATA->ROW as $key => $row_item) { 
                                     if((string)$row_item['FK_ERP_EMPRESAS'] == $row['EMPRESA']){?>
@@ -37,7 +36,6 @@
                                 }?>
                             </table>
                         </div>
-                    </div>
                 </div>
             </li>
             <?php $i++;} ?>

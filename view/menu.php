@@ -48,9 +48,7 @@
                     </ul>
              </div>
         </div>
-        <div class="contenido">
-            Panel principal TGroup Web
-        </div>
+        <div class="contenido"></div>
     </body>
 </html>
     <?php } else header("location: ../view/login.php");?>
