@@ -19,24 +19,25 @@
                 <div class="menu-list">
 
                     <ul id="menu-content" class="menu-content collapse out">
-                        <li>
+                        <li class="active">
                           <a href="#">
                           <i class="fa fa-dashboard fa-lg"></i> Panel principal
                           </a>
                         </li>
 
-                        <li  data-toggle="collapse" data-target="#products" class="collapsed active">
+                        <li  data-toggle="collapse" data-target="#ventas" class="collapsed">
                           <a href="#"><i class="fa fa-shopping-cart fa-lg"></i> Ventas <span class="arrow"></span></a>
                         </li>
-                        <ul class="sub-menu collapse" id="products">
+                        <ul class="sub-menu collapse" id="ventas">
                             <li class="active"><a href="#" onclick="cargarContenido('ERP_PEN_VEN_IMP')"><i class="fa fa-calendar fa-lg"></i>Pendientes de imputaci&oacute;n</a></li>
+                            <li class="active"><a href="#" onclick="cargarContenido('ERP_COM_VEN_REC')"><i class="fa fa-arrow-left fa-lg"></i>Recibos</a></li>
                         </ul>
 
 
-                        <li data-toggle="collapse" data-target="#service" class="collapsed">
+                        <li data-toggle="collapse" data-target="#compras" class="collapsed">
                           <a href="#"><i class="fa fa-gift fa-lg"></i> Compras <span class="arrow"></span></a>
                         </li>  
-                        <ul class="sub-menu collapse" id="service">
+                        <ul class="sub-menu collapse" id="compras">
                           <li class="active"><a href="#"><i class="fa fa-calendar fa-lg"></i>Pendientes de imputaci&oacute;n</a></li>
                         </ul>
 
