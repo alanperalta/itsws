@@ -12,11 +12,11 @@
                     <div class="col-xs-8">
                         <?php echo $row['RAZON_SOCIAL']."(".$row['EMPRESA']."): $".number_format($row['SALDO'],2,',','.');?>
                     </div>
-                    <div class="col-xs-2"><i class="fa fa-chevron-down pull-right"></i></div>
+                    <div class="col-xs-2 pull-right"><i class="fa fa-chevron-down pull-right"></i></div>
                 </div>
                 <div id="detail-<?=$i?>">
                     <br/>
-                    <div class="container">
+                    <div class="table-responsive">
                             <table class="table table-responsive">
                                 <tr>
                                     <th>Fecha</th>
