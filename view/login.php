@@ -19,7 +19,7 @@
                             <option value="LILIANA">LILIANA</option>
                             <option value="PRUEBA" selected>PRUEBA</option>
                         </select>
-                        <button class="btn btn-info btn-block login" type="submit">Ingresar</button>
+                        <button class="btn btn-info btn-block login" type="submit">Ingresaaar</button>
                     </form>
                 </div>
             </div>
