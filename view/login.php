@@ -16,7 +16,7 @@
                         <input type="password" name="password" placeholder="Contrase&ntilde;a">
                         <select name="dbName" placeholder="Contrase&ntilde;a" id="dbName" class="form-control">
                             <option value="TGROUP">TGROUP</option>
-                            <option value="LILIANA">LILIANA</option>
+                            <option value="TGROUP_LNR">LILIANA</option>
                             <option value="PRUEBA" selected>PRUEBA</option>
                         </select>
                         <button class="btn btn-info btn-block login" type="submit">Ingresar</button>

@@ -8,7 +8,7 @@
                 $Itris = new Itris;
                 $client = $Itris->ItsCreateClient( $ws , $soapClient );
                 
-		$get_data = $Itris->ItsGetData( $soapClient ,  $UserSession , 'ERP_PEN_VEN_IMP', 10, '', 'RAZON_SOCIAL ASC');
+		$get_data = $Itris->ItsGetData( $soapClient ,  $UserSession , 'ERP_PEN_VEN_IMP', 500, '', 'RAZON_SOCIAL ASC');
 		if(!$get_data['error']) {
                         $primero = true;
                         $saldo = 0;

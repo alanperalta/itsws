@@ -17,8 +17,9 @@
         $_SESSION['db'] = $db;
         $_SESSION['password'] = $password;
         $_SESSION['userSession'] = $do_login['UserSession'];
+        $do_logout = logout($_SESSION['userSession']);
     }
-    $do_logout = logout($_SESSION['userSession']);
+    
     echo json_encode($data);
     
     
