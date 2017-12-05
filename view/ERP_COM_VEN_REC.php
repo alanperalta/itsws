@@ -1,8 +1,128 @@
-<?php include_once '../controller/ERP_COM_VEN_REC.php';?>
+<?php include_once '../controller/ERP_COM_VEN_REC.php';
+//Mode = 0: Menú de recibos
+//Mode = 1: Recibo nuevo
+//Mode = 2: Recibo en base a factura
+?>
 <script type="text/javascript" src="../js/ERP_COM_VEN_REC.js"></script>
+
+    <?php if(!isset($_GET['mode']) || !$_GET['mode']){?>
 <div class="container">
-	<div class="panel panel-default">
-            <button type="button" class="btn btn-primary btn-lg btn-block" onclick="nuevoRecibo()">Crear recibo a cuenta</button>
-            <button type="button" class="btn btn-primary btn-lg btn-block" onclick="nuevoReciboEnBase()">Recibo en base a factura</button>
+    <div class="panel panel-default">
+        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="nuevoRecibo()">Crear recibo a cuenta</button>
+        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="nuevoReciboEnBase()">Recibo en base a factura</button>
     </div>
 </div>
+<?php }elseif($_GET['mode'] == 1){ //Recibo nuevo ?>
+    <div class="container">
+
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3 form-box">
+                        	
+                        	<form role="form" action="" method="post" class="registration-form">
+                        		
+                        		<fieldset>
+		                        	<div class="form-top">
+		                        		<div class="form-top-left">
+		                        			<h3>Paso 1 / 3</h3>
+		                            		<p>Datos del recibo:</p>
+		                        		</div>
+		                        		<div class="form-top-right">
+		                        			<i class="fa fa-user"></i>
+		                        		</div>
+		                            </div>
+		                            <div class="form-bottom">
+                                                        <div class="form-group">
+				                    		<label class="sr-only" for="form-first-name">Fecha</label>
+                                                                <input type="text" name="fecha-desc" placeholder="Fecha..." class="form-fecha form-control" id="fecha-desc" readonly="">
+                                                                <input type="hidden" name="form-fecha" id="form-fecha">
+				                        </div>
+				                    	<div class="form-group">
+				                    		<label class="sr-only" for="form-first-name">Empresa</label>
+				                        	<input type="text" name="form-empresa" placeholder="Empresa..." class="form-empresa form-control" id="form-empresa">
+				                        </div>
+				                        <div class="form-group">
+				                        	<label class="sr-only" for="form-importe">Importe</label>
+				                        	<input type="text" name="form-importe" placeholder="Importe..." class="form-importe form-control" id="form-importe">
+				                        </div>
+				                        <div class="form-group">
+				                        	<label class="sr-only" for="form-observaciones">Observaciones</label>
+				                        	<textarea name="form-observaciones" placeholder="Observaciones..." 
+				                        				class="form-observaciones form-control" id="form-observaciones"></textarea>
+				                        </div>
+				                        <button type="button" class="btn btn-next">Siguiente</button>
+				                    </div>
+			                    </fieldset>
+			                    
+			                    <fieldset>
+		                        	<div class="form-top">
+		                        		<div class="form-top-left">
+		                        			<h3>Paso 2 / 3</h3>
+		                            		<p>Forma de pago:</p>
+		                        		</div>
+		                        		<div class="form-top-right">
+		                        			<i class="fa fa-key"></i>
+		                        		</div>
+		                            </div>
+		                            <div class="form-bottom">
+				                        <div class="form-group">
+				                        	<label class="sr-only" for="form-email">Email</label>
+				                        	<input type="text" name="form-email" placeholder="Email..." class="form-email form-control" id="form-email">
+				                        </div>
+				                        <div class="form-group">
+				                    		<label class="sr-only" for="form-password">Password</label>
+				                        	<input type="password" name="form-password" placeholder="Password..." class="form-password form-control" id="form-password">
+				                        </div>
+				                        <div class="form-group">
+				                        	<label class="sr-only" for="form-repeat-password">Repeat password</label>
+				                        	<input type="password" name="form-repeat-password" placeholder="Repeat password..." 
+				                        				class="form-repeat-password form-control" id="form-repeat-password">
+				                        </div>
+				                        <button type="button" class="btn btn-previous">Atr&aacute;s</button>
+                                                        <button type="button" class="btn btn-next">Siguiente</button>
+				                    </div>
+			                    </fieldset>
+			                    
+			                    <fieldset>
+		                        	<div class="form-top">
+		                        		<div class="form-top-left">
+		                        			<h3>Paso 3 / 3</h3>
+		                            		<p>Social media profiles:</p>
+		                        		</div>
+		                        		<div class="form-top-right">
+		                        			<i class="fa fa-twitter"></i>
+		                        		</div>
+		                            </div>
+		                            <div class="form-bottom">
+				                    	<div class="form-group">
+				                    		<label class="sr-only" for="form-facebook">Facebook</label>
+				                        	<input type="text" name="form-facebook" placeholder="Facebook..." class="form-facebook form-control" id="form-facebook">
+				                        </div>
+				                        <div class="form-group">
+				                        	<label class="sr-only" for="form-twitter">Twitter</label>
+				                        	<input type="text" name="form-twitter" placeholder="Twitter..." class="form-twitter form-control" id="form-twitter">
+				                        </div>
+				                        <div class="form-group">
+				                        	<label class="sr-only" for="form-google-plus">Google plus</label>
+				                        	<input type="text" name="form-google-plus" placeholder="Google plus..." class="form-google-plus form-control" id="form-google-plus">
+				                        </div>
+				                        <button type="button" class="btn btn-previous">Previous</button>
+				                        <button type="submit" class="btn">Sign me up!</button>
+				                    </div>
+			                    </fieldset>
+		                    
+		                    </form>
+		                    
+                        </div>
+                    </div>
+                </div>
+        
+<script src="../js/stepform.js"></script>
+          <button type="button" class="btn btn-primary" onclick="volverRecibo()">Volver</button>
+    </div>
+<?php } elseif ($_GET['mode'] == 2) { //Recibo en base ?>
+    <div class="container">
+        modo2
+          <button type="button" class="btn btn-primary btn-block" onclick="volverRecibo()">Volver</button>
+    </div>
+<?php } ?>
+
