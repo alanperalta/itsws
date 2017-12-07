@@ -14,12 +14,17 @@ function volverRecibo(){
     $('.contenido').load('../view/ERP_COM_VEN_REC.php?mode=0');
 }
 
+function seleccionarEmpresa(){
+    $('#form-empresa').val($('li.ui-selected').attr('id'));
+    $('#modal-empresas').modal('hide');
+}
+
 //Si apreto enter en el campo empresa, no intenta submit, ejecuta la función para buscar empresas
-$("#form-empresa").keypress(function(event) {
+$('#modal-input-empresa').keypress(function(event) {
     if (event.keyCode === 10 || event.keyCode === 13){ 
         event.preventDefault();
         var parametros = {
-            'clave':$("#form-empresa").val()
+            'clave':$('#modal-input-empresa').val()
         };
         $.ajax({
             data:  parametros,
@@ -27,9 +32,17 @@ $("#form-empresa").keypress(function(event) {
             type:  'post',
             dataType: 'json'
         }).done( function (response) {
-             
-             alert(response);
-            }
-        );
+            fila = '';
+            $.each(response, function(i, member) {
+                fila += '<li class="ui-widget-content" id="'+response[i].ID+'">'+response[i].DESCRIPCION+'</li>';
+            });
+            $('#lista-empresas').html(fila);
+            $('#lista-empresas').selectable();
+            
+        });
     }
+});
+
+$('#btn-empresas').on("click", function(){
+    $('#modal-empresas').modal("show");
 });

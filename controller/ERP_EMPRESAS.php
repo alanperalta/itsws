@@ -17,9 +17,10 @@ if(!$do_login['error']) {
         }
         $data = array();
         foreach ($get_data['data']->ROWDATA->ROW as $row){
-            $data[] = array('ID' => $row['ID'], 'DESCRIPCION' => $row['DESCRIPCION']);
+            $data[] = array('ID' => (string)$row['ID'], 'DESCRIPCION' => (string)$row['DESCRIPCION']);
         }
-        echo json_encode($data);
+        $json = json_encode($data);
+        echo $json;
 
     } else {
             echo $get_data['message'];

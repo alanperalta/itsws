@@ -38,11 +38,12 @@
 				                        </div>
 				                    	<div class="form-group">
 				                    		<label class="sr-only" for="form-first-name">Empresa</label>
-				                        	<input type="text" name="form-empresa" placeholder="Empresa..." class="form-empresa form-control" id="form-empresa">
-				                        </div>
+                                                                <input type="text" name="form-empresa" placeholder="Empresa..." class="form-empresa form-control" id="form-empresa" readonly="">
+                                                                <button id="btn-empresas" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></button>
+                                                        </div>
 				                        <div class="form-group">
 				                        	<label class="sr-only" for="form-importe">Importe</label>
-				                        	<input type="text" name="form-importe" placeholder="Importe..." class="form-importe form-control" id="form-importe">
+                                                                <input type="text" name="form-importe" placeholder="Importe..." class="form-importe form-control" id="form-importe">
 				                        </div>
 				                        <div class="form-group">
 				                        	<label class="sr-only" for="form-observaciones">Observaciones</label>
@@ -126,3 +127,24 @@
     </div>
 <?php } ?>
 
+<!-- Modal -->
+  <div class="modal fade" id="modal-empresas" role="dialog">
+    <div class="modal-dialog">
+        
+      <!-- Modal content-->
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 style="color:red;">Seleccione la empresa</h4>
+          </div>
+          <div class="modal-body">
+              <input type="text" name="modal-input-empresa" placeholder="Empresa..." class="form-control" id="modal-input-empresa">
+              <ul id="lista-empresas">
+                  
+              </ul>
+              <br/>
+              <button class="btn btn-lg btn-primary" onclick="seleccionarEmpresa()">Aceptar</button>
+          </div>
+      </div>
+    </div>
+  </div>
