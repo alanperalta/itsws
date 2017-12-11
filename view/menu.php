@@ -41,6 +41,13 @@
                         <li class="active"><a href="#" onclick="cargarContenido('ERP_PEN_COM_IMP')"><i class="fa fa-calendar fa-lg"></i>Pendientes de imputaci&oacute;n</a></li>
                         </ul>
 
+                        <li data-toggle="collapse" data-target="#tesoreria" class="collapsed">
+                          <a href="#"><i class="fa fa-money fa-lg"></i> Tesorer&iacute;a <span class="arrow"></span></a>
+                        </li>  
+                        <ul class="sub-menu collapse" id="tesoreria">
+                        <li class="active"><a href="#" onclick="cargarContenido('ERP_CHE_CAR')"><i class="fa fa-list-alt fa-lg"></i>Valores en cartera</a></li>
+                        </ul>
+
                          <li>
                           <a href="../controller/logout.php">
                               <i class="fa fa-ban fa-lg"></i> Cerrar sesi&oacute;n
