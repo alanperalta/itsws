@@ -38,7 +38,7 @@
                           <a href="#"><i class="fa fa-gift fa-lg"></i> Compras <span class="arrow"></span></a>
                         </li>  
                         <ul class="sub-menu collapse" id="compras">
-                          <li class="active"><a href="#"><i class="fa fa-calendar fa-lg"></i>Pendientes de imputaci&oacute;n</a></li>
+                        <li class="active"><a href="#" onclick="cargarContenido('ERP_PEN_COM_IMP')"><i class="fa fa-calendar fa-lg"></i>Pendientes de imputaci&oacute;n</a></li>
                         </ul>
 
                          <li>
