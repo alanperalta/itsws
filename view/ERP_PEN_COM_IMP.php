@@ -7,7 +7,7 @@
         </div>   
         <ul class="list-group">
             <?php $i = 1; foreach ($datos as $key => $row) { ?>
-            <li class="list-group-item <?=($row['SALDO'] <= 0)?"list-green":"list-red"?>">
+            <li class="list-group-item <?=($row['SALDO'] >= 0)?"list-green":"list-red"?>">
                 <div class="row toggle" id="dropdown-detail-<?=$i?>" data-toggle="detail-<?=$i?>">
                     <div class="col-xs-8">
                         <?php echo $row['RAZ_SOCIAL']."(".$row['EMPRESA']."): $".number_format($row['SALDO'],2,',','.');?>
