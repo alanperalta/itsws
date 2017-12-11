@@ -1,5 +1,5 @@
 <?php include_once '../controller/ERP_COM_VEN_REC.php';
-//Mode = 0: Menú de recibos
+//Mode = 0: Menu de recibos
 //Mode = 1: Recibo nuevo
 //Mode = 2: Recibo en base a factura
 ?>
@@ -61,22 +61,14 @@
 		                            		<p>Forma de pago:</p>
 		                        		</div>
 		                        		<div class="form-top-right">
-		                        			<i class="fa fa-key"></i>
+		                        			<i class="fa fa-money"></i>
 		                        		</div>
 		                            </div>
 		                            <div class="form-bottom">
 				                        <div class="form-group">
-				                        	<label class="sr-only" for="form-email">Email</label>
-				                        	<input type="text" name="form-email" placeholder="Email..." class="form-email form-control" id="form-email">
-				                        </div>
-				                        <div class="form-group">
-				                    		<label class="sr-only" for="form-password">Password</label>
-				                        	<input type="password" name="form-password" placeholder="Password..." class="form-password form-control" id="form-password">
-				                        </div>
-				                        <div class="form-group">
-				                        	<label class="sr-only" for="form-repeat-password">Repeat password</label>
-				                        	<input type="password" name="form-repeat-password" placeholder="Repeat password..." 
-				                        				class="form-repeat-password form-control" id="form-repeat-password">
+				                        	<label class="sr-only" for="cuenta">Cuenta</label>
+                                                                <?php cargarCuentas(); ?>;
+				                        	<input type="hidden" name="cuenta" class="form-cuenta form-control" id="form-cuenta">
 				                        </div>
 				                        <button type="button" class="btn btn-previous">Atr&aacute;s</button>
                                                         <button type="button" class="btn btn-next">Siguiente</button>

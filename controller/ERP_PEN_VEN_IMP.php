@@ -13,6 +13,7 @@
                         $primero = true;
                         $saldo = 0;
                         $datos = array();
+                        //Recorro los datos y acumulo saldos por empresa
                         foreach ($get_data['data']->ROWDATA->ROW as $key => $row ) {
                             if($primero){
                                 $primero = FALSE;
@@ -28,8 +29,10 @@
                                 $saldo = (real)$row['SALDO'];
                             }
                         }
-                        $datos[] = array('EMPRESA' => $empresa, 'SALDO' => $saldo, 'RAZON_SOCIAL' => $razSoc);
-
+                        //Asigno ultimo saldo del for de empresas
+                        if(isset($empresa)){
+                            $datos[] = array('EMPRESA' => $empresa, 'SALDO' => $saldo, 'RAZON_SOCIAL' => $razSoc);
+                        }
                 
 			$do_logout = logout($UserSession);
 

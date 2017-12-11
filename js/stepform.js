@@ -18,7 +18,7 @@ jQuery(document).ready(function() {
     */
     $('.registration-form fieldset:first-child').fadeIn('slow');
     
-    $('input.form-empresa, input.form-fecha, input.form-importe').on('focus', function() {
+    $('input.form-empresa, input.form-fecha, input.form-importe, input.form-cuenta').on('focus', function() {
     	$(this).removeClass('input-error');
     });
     
@@ -27,7 +27,7 @@ jQuery(document).ready(function() {
     	var parent_fieldset = $(this).parents('fieldset');
     	var next_step = true;
     	
-    	parent_fieldset.find('input.form-empresa, input.form-fecha, input.form-importe').each(function() {
+    	parent_fieldset.find('input.form-empresa, input.form-fecha, input.form-importe, input.form-cuenta').each(function() {
     		if( $(this).val() == "" ) {
     			$(this).addClass('input-error');
     			next_step = false;
@@ -63,7 +63,7 @@ jQuery(document).ready(function() {
     // submit
     $('.registration-form').on('submit', function(e) {
     	
-    	$(this).find('input.form-empresa, input.form-fecha, input.form-importe').each(function() {
+    	$(this).find('input.form-empresa, input.form-fecha, input.form-importe, input.form-cuenta').each(function() {
     		if( $(this).val() == "" ) {
     			e.preventDefault();
     			$(this).addClass('input-error');
