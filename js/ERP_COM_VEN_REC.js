@@ -62,4 +62,13 @@ function verificarEmpresa(){
    if(seleccion === 1){
        $('#btn-modal-empresa').prop("disabled", false);
    }else $('#btn-modal-empresa').prop("disabled", true);
-};
+}
+
+function verificarCuentaa(){
+   seleccion = $('li.item-cuenta.ui-selected').length;
+   alert(seleccion);
+   if(seleccion === 1){
+       $('.next2').prop("disabled", false);
+       $('#form-cuenta').val($('li.item-cuenta.ui-selected').attr("id"));
+   }else $('.next2').prop("disabled", true);
+}

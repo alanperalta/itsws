@@ -1,4 +1,4 @@
-<?php include_once '../controller/ERP_COM_VEN_REC.php';
+<?php 
 //Mode = 0: Menu de recibos
 //Mode = 1: Recibo nuevo
 //Mode = 2: Recibo en base a factura
@@ -21,87 +21,89 @@
                         	<form role="form" action="" method="post" class="registration-form">
                         		
                         		<fieldset>
-		                        	<div class="form-top">
-		                        		<div class="form-top-left">
-		                        			<h3>Paso 1 / 3</h3>
-		                            		<p>Datos del recibo:</p>
-		                        		</div>
-		                        		<div class="form-top-right">
-		                        			<i class="fa fa-user"></i>
-		                        		</div>
+                                            <div class="form-top">
+                                                <div class="form-top-left">
+                                                    <h3>Paso 1 / 3</h3>
+                                                <p>Datos del recibo:</p>
+                                                </div>
+                                                <div class="form-top-right">
+                                                    <i class="fa fa-user"></i>
+                                                </div>
 		                            </div>
 		                            <div class="form-bottom">
-                                                        <div class="form-group">
-				                    		<label class="sr-only" for="form-first-name">Fecha</label>
-                                                                <input type="text" name="fecha-desc" placeholder="Fecha..." class="form-fecha form-control" id="fecha-desc" readonly="" value="<?php echo date("d/m/Y")?>">
-                                                                <input type="hidden" name="form-fecha" id="form-fecha" value="<?php echo date("Y-m-d")?>">
-				                        </div>
-				                    	<div class="form-group">
-				                    		<label class="sr-only" for="form-first-name">Empresa</label>
-                                                                <input type="text" name="form-empresa" placeholder="Empresa..." class="form-empresa form-control" id="form-empresa" readonly="">
-                                                                <button id="btn-empresas" class="btn btn-primary btn-sm boton-empresa"><i class="fa fa-search"></i></button>
-                                                        </div>
-				                        <div class="form-group">
-				                        	<label class="sr-only" for="form-importe">Importe</label>
-                                                                <input type="number" name="form-importe" placeholder="Importe..." class="form-importe form-control" id="form-importe" step=".01">
-				                        </div>
-				                        <div class="form-group">
-				                        	<label class="sr-only" for="form-observaciones">Observaciones</label>
-				                        	<textarea name="form-observaciones" placeholder="Observaciones..." 
-				                        				class="form-observaciones form-control" id="form-observaciones"></textarea>
-				                        </div>
-				                        <button type="button" class="btn btn-next">Siguiente</button>
-				                    </div>
-			                    </fieldset>
+                                                <div class="form-group">
+                                                    <label class="sr-only" for="form-first-name">Fecha</label>
+                                                    <input type="text" name="fecha-desc" placeholder="Fecha..." class="form-fecha form-control" id="fecha-desc" readonly="" value="<?php echo date("d/m/Y")?>">
+                                                    <input type="hidden" name="form-fecha" id="form-fecha" value="<?php echo date("Y-m-d")?>">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="sr-only" for="form-first-name">Empresa</label>
+                                                    <input type="text" name="form-empresa" placeholder="Empresa..." class="form-empresa form-control" id="form-empresa" readonly="">
+                                                    <button id="btn-empresas" class="btn btn-primary btn-sm boton-empresa"><i class="fa fa-search"></i></button>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="sr-only" for="form-importe">Importe</label>
+                                                    <input type="number" name="form-importe" placeholder="Importe..." class="form-importe form-control" id="form-importe" step=".01">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="sr-only" for="form-observaciones">Observaciones</label>
+                                                    <textarea name="form-observaciones" placeholder="Observaciones..." 
+                                                                                class="form-observaciones form-control" id="form-observaciones"></textarea>
+                                                </div>
+                                                <button type="button" class="btn btn-next next1">Siguiente</button>
+				            </div>
+			                </fieldset>
 			                    
-			                    <fieldset>
-		                        	<div class="form-top">
-		                        		<div class="form-top-left">
-		                        			<h3>Paso 2 / 3</h3>
-		                            		<p>Forma de pago:</p>
-		                        		</div>
-		                        		<div class="form-top-right">
-		                        			<i class="fa fa-money"></i>
-		                        		</div>
-		                            </div>
-		                            <div class="form-bottom">
-				                        <div class="form-group">
-				                        	<label class="sr-only" for="cuenta">Cuenta</label>
-                                                                <?php cargarCuentas(); ?>;
-				                        	<input type="hidden" name="cuenta" class="form-cuenta form-control" id="form-cuenta">
-				                        </div>
-				                        <button type="button" class="btn btn-previous">Atr&aacute;s</button>
-                                                        <button type="button" class="btn btn-next">Siguiente</button>
-				                    </div>
-			                    </fieldset>
-			                    
-			                    <fieldset>
-		                        	<div class="form-top">
-		                        		<div class="form-top-left">
-		                        			<h3>Paso 3 / 3</h3>
-		                            		<p>Social media profiles:</p>
-		                        		</div>
-		                        		<div class="form-top-right">
-		                        			<i class="fa fa-twitter"></i>
-		                        		</div>
-		                            </div>
-		                            <div class="form-bottom">
-				                    	<div class="form-group">
-				                    		<label class="sr-only" for="form-facebook">Facebook</label>
-				                        	<input type="text" name="form-facebook" placeholder="Facebook..." class="form-facebook form-control" id="form-facebook">
-				                        </div>
-				                        <div class="form-group">
-				                        	<label class="sr-only" for="form-twitter">Twitter</label>
-				                        	<input type="text" name="form-twitter" placeholder="Twitter..." class="form-twitter form-control" id="form-twitter">
-				                        </div>
-				                        <div class="form-group">
-				                        	<label class="sr-only" for="form-google-plus">Google plus</label>
-				                        	<input type="text" name="form-google-plus" placeholder="Google plus..." class="form-google-plus form-control" id="form-google-plus">
-				                        </div>
-				                        <button type="button" class="btn btn-previous">Previous</button>
-				                        <button type="submit" class="btn">Sign me up!</button>
-				                    </div>
-			                    </fieldset>
+                                        <fieldset>
+                                            <div class="form-top">
+                                                    <div class="form-top-left">
+                                                            <h3>Paso 2 / 3</h3>
+                                                    <p>Forma de pago:</p>
+                                                    </div>
+                                                    <div class="form-top-right">
+                                                            <i class="fa fa-money"></i>
+                                                    </div>
+                                        </div>
+                                        <div class="form-bottom">
+                                                    <div class="form-group">
+                                                            <label class="sr-only" for="cuenta">Cuenta</label>
+                                                            <ul id="lista-cuentas">
+
+                                                            </ul>
+                                                            <input type="hidden" name="form-cuenta" class="form-cuenta form-control" id="form-cuenta">
+                                                    </div>
+                                                    <button type="button" class="btn btn-previous">Atr&aacute;s</button>
+                                                    <button type="button" class="btn btn-next next2" disabled="">Siguiente</button>
+                                                </div>
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <div class="form-top">
+                                                    <div class="form-top-left">
+                                                            <h3>Paso 3 / 3</h3>
+                                                    <p>Social media profiles:</p>
+                                                    </div>
+                                                    <div class="form-top-right">
+                                                            <i class="fa fa-twitter"></i>
+                                                    </div>
+                                        </div>
+                                        <div class="form-bottom">
+                                                    <div class="form-group">
+                                                            <label class="sr-only" for="form-facebook">Facebook</label>
+                                                            <input type="text" name="form-facebook" placeholder="Facebook..." class="form-facebook form-control" id="form-facebook">
+                                                    </div>
+                                                    <div class="form-group">
+                                                            <label class="sr-only" for="form-twitter">Twitter</label>
+                                                            <input type="text" name="form-twitter" placeholder="Twitter..." class="form-twitter form-control" id="form-twitter">
+                                                    </div>
+                                                    <div class="form-group">
+                                                            <label class="sr-only" for="form-google-plus">Google plus</label>
+                                                            <input type="text" name="form-google-plus" placeholder="Google plus..." class="form-google-plus form-control" id="form-google-plus">
+                                                    </div>
+                                            <button type="button" class="btn btn-previous">Atr&aacute;s</button>
+                                                    <button type="submit" class="btn">Aceptar</button>
+                                                </div>
+                                        </fieldset>
 		                    
 		                    </form>
 		                    

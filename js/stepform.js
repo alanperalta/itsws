@@ -46,9 +46,31 @@ jQuery(document).ready(function() {
         }
         
     	if( next_step ) {
-    		parent_fieldset.fadeOut(400, function() {
-	    		$(this).next().fadeIn();
-	    	});
+            if($(this).hasClass("next1")){
+                $.ajax({
+                    url: '../controller/APP_CUENTAS.php',
+                    type: 'post',
+                    dataType: 'json',
+                    beforeSend: function (xhr) {
+                        $('#lista-cuentas').html(
+                            '<div id="loading-cuentas">Cargando... <i class="fa fa-refresh fa-spin" style="font-size:24px"></i></div>'
+                        );
+                    }
+                }).done( function (response) {
+                    fila = '';
+                    //Recorro el JSON y agrego un item de lista por cada cuenta encontrada
+                    $.each(response, function(i, member) {
+                        fila += '<li class="ui-widget-content item-cuenta" id="'+response[i].ID+'" onclick="verificarCuenta();">'+response[i].DESCRIPCION+'</li>';
+                    });
+                    $('#lista-cuentas').html(fila);
+                    $('#lista-cuentas').selectable();
+                    $('#loading-cuentas').hide();
+                });
+            }
+            parent_fieldset.fadeOut(400, function() {
+                    $(this).next().fadeIn();
+            });
+                
     	}
     	
     });
