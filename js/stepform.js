@@ -18,7 +18,7 @@ jQuery(document).ready(function() {
     */
     $('.registration-form fieldset:first-child').fadeIn('slow');
     
-    $('.registration-form input[type="text"], .registration-form input[type="password"], .registration-form textarea').on('focus', function() {
+    $('input.form-empresa, input.form-fecha, input.form-importe').on('focus', function() {
     	$(this).removeClass('input-error');
     });
     
@@ -27,7 +27,7 @@ jQuery(document).ready(function() {
     	var parent_fieldset = $(this).parents('fieldset');
     	var next_step = true;
     	
-    	parent_fieldset.find('input[type="text"], input[type="password"], textarea').each(function() {
+    	parent_fieldset.find('input.form-empresa, input.form-fecha, input.form-importe').each(function() {
     		if( $(this).val() == "" ) {
     			$(this).addClass('input-error');
     			next_step = false;
@@ -37,6 +37,14 @@ jQuery(document).ready(function() {
     		}
     	});
     	
+        //Importe debe ser valido
+        var importe = $('#form-importe').val();
+        if(importe && !/^(?:\d*\.\d{1,2}|\d+)$/.test(importe)){
+            next_step = false;
+            $('#form-importe').addClass('input-error');
+            alert('Importe fuera de rango, debe tener formato 0.00');
+        }
+        
     	if( next_step ) {
     		parent_fieldset.fadeOut(400, function() {
 	    		$(this).next().fadeIn();
@@ -55,7 +63,7 @@ jQuery(document).ready(function() {
     // submit
     $('.registration-form').on('submit', function(e) {
     	
-    	$(this).find('input[type="text"], input[type="password"], textarea').each(function() {
+    	$(this).find('input.form-empresa, input.form-fecha, input.form-importe').each(function() {
     		if( $(this).val() == "" ) {
     			e.preventDefault();
     			$(this).addClass('input-error');

@@ -12,12 +12,27 @@
 #lista-empresas .ui-selected { background: #F39814; color: white; }
 #lista-empresas { list-style-type: none; margin: 0; padding: 0; width: 100%; }
 #lista-empresas li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 40px; }
+#lista-empresas li:hover {
+    cursor: pointer; 
+}
 
 .form-empresa{
     width: 80%;
+    display: inline-block;
 }
 
-.form-
+.form-empresa:hover{
+    cursor: default;
+}
+
+.boton-empresa{
+    display: inline-block;
+    float: right;
+}
+
+.form-fecha:hover{
+    cursor: pointer;
+}
 /*Multi-step*/
 
 strong { font-weight: 500; }
@@ -188,12 +203,8 @@ form .form-bottom textarea {
 	height: 100px;
 }
 
-form .form-bottom button.btn {
-	min-width: 105px;
-}
-
 form .form-bottom .input-error {
-	border-color: #19b9e7;
+	border-color: red;
 }
 
 form.registration-form fieldset {

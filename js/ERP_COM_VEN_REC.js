@@ -30,19 +30,36 @@ $('#modal-input-empresa').keypress(function(event) {
             data:  parametros,
             url:   '../controller/ERP_EMPRESAS.php',
             type:  'post',
-            dataType: 'json'
+            dataType: 'json',
+            beforeSend: function (xhr) {
+                $('#lista-empresas').html(
+                    '<div id="loading-empresas">Buscando... <i class="fa fa-refresh fa-spin" style="font-size:24px"></i></div>'
+                );
+            }
         }).done( function (response) {
             fila = '';
+            //Recorro el JSON y agrego un item de lista por cada empresa encontrada
             $.each(response, function(i, member) {
-                fila += '<li class="ui-widget-content" id="'+response[i].ID+'">'+response[i].DESCRIPCION+'</li>';
+                fila += '<li class="ui-widget-content item-empresa" id="'+response[i].ID+'" onclick="verificarEmpresa();">'+response[i].DESCRIPCION+'</li>';
             });
             $('#lista-empresas').html(fila);
             $('#lista-empresas').selectable();
-            
+            $('#loading-empresas').hide();
+            $('#modal-input-empresa').blur();
         });
     }
 });
 
-$('#btn-empresas').on("click", function(){
+//Muestro pop-up de empresas
+$('#btn-empresas').on("click", function(e){
+    e.preventDefault();
     $('#modal-empresas').modal("show");
 });
+
+//Activo o desactivo boton aceptar segun haya o no empresa seleccionada
+function verificarEmpresa(){
+   seleccion = $('li.ui-selected').length;
+   if(seleccion === 1){
+       $('#btn-modal-empresa').prop("disabled", false);
+   }else $('#btn-modal-empresa').prop("disabled", true);
+};
