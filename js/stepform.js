@@ -116,4 +116,15 @@ jQuery(document).ready(function() {
         dateFormat: "dd/mm/yy",
         altFormat: "yy-mm-dd"
   });
+  
+  $('form.registration-form').on('submit', function (event){
+      event.preventDefault();
+      $.ajax({
+          url: $(this).attr('action'),
+          data: $(this).serialize(),
+          type: 'POST'
+      }).done(function(response){
+          //Algo
+      });
+  });
 });
