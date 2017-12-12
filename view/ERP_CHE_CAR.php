@@ -1,9 +1,14 @@
 <?php include_once '../controller/ERP_CHE_CAR.php';?>
-<!-- <script type="text/javascript" src="../js/ERP_CHE_CAR.js"></script> -->
+<script type="text/javascript" src="../js/ERP_CHE_CAR.js"></script>
 <div class="container">
 	<div class="panel panel-default">
+    <div class="form-group">
+      <input type="text" name="fecha-desc" placeholder="Fecha..." class="form-fecha form-control" id="fecha-desc" value="">
+      <input type="hidden" name="form-fecha" id="form-fecha" value="">
+      <button id="btn-fecha-val-car" class="btn btn-primary btn-sm boton-empresa"><i class="fa fa-search"></i></button>
+    </div>
     <div class="panel-heading">
-        <h3 class="panel-title">Valores en cartera ($ <?php echo number_format($saldo,2,',','.') ?>) </h3>
+      <h3 class="panel-title">Valores en cartera ($ <?php echo number_format($saldo,2,',','.') ?>) </h3>
     </div>   
     <div class="table-responsive">
         <table class="table table-responsive">
@@ -27,4 +32,3 @@
     </div>
 	</div>
 </div>
-
