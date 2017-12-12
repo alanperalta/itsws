@@ -17,7 +17,12 @@ if(!$do_login['error']) {
         }
         $data = array();
         foreach ($get_data['data']->ROWDATA->ROW as $row){
-            $data[] = array('ID' => (string)$row['FK_ERP_CUE_TES'], 'DESCRIPCION' => (string)$row['DESCRIPCION']);
+            $id = (string)$row['FK_ERP_CUE_TES'];
+            //Hago esto, porque por algun motivo, el ID de la cuenta viene con un punto al final
+            if(substr($id, -1) == "."){
+                $id = substr($id, 0, -1);
+            }
+            $data[] = array('ID' => $id, 'DESCRIPCION' => (string)$row['DESCRIPCION']);
         }
         $json = json_encode($data);
         echo $json;

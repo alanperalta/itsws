@@ -40,10 +40,17 @@ $('#modal-input-empresa').keypress(function(event) {
             fila = '';
             //Recorro el JSON y agrego un item de lista por cada empresa encontrada
             $.each(response, function(i, member) {
-                fila += '<li class="ui-widget-content item-empresa" id="'+response[i].ID+'" onclick="verificarEmpresa();">'+response[i].DESCRIPCION+'</li>';
+                fila += '<li class="ui-widget-content item-empresa" id="'+response[i].ID+'">'+response[i].DESCRIPCION+'</li>';
             });
             $('#lista-empresas').html(fila);
-            $('#lista-empresas').selectable();
+            $('#lista-empresas').selectable({
+                selected: function(e, ui){
+                    seleccion = $('li.ui-selected').length;
+                    if(seleccion === 1){
+                        $('#btn-modal-empresa').prop("disabled", false);
+                    }else $('#btn-modal-empresa').prop("disabled", true);
+                }
+            });
             $('#loading-empresas').hide();
             $('#modal-input-empresa').blur();
         });
@@ -55,20 +62,3 @@ $('#btn-empresas').on("click", function(e){
     e.preventDefault();
     $('#modal-empresas').modal("show");
 });
-
-//Activo o desactivo boton aceptar segun haya o no empresa seleccionada
-function verificarEmpresa(){
-   seleccion = $('li.ui-selected').length;
-   if(seleccion === 1){
-       $('#btn-modal-empresa').prop("disabled", false);
-   }else $('#btn-modal-empresa').prop("disabled", true);
-}
-
-function verificarCuentaa(){
-   seleccion = $('li.item-cuenta.ui-selected').length;
-   alert(seleccion);
-   if(seleccion === 1){
-       $('.next2').prop("disabled", false);
-       $('#form-cuenta').val($('li.item-cuenta.ui-selected').attr("id"));
-   }else $('.next2').prop("disabled", true);
-}

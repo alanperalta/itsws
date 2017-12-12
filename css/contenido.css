@@ -11,7 +11,7 @@
 #lista-empresas .ui-selecting, #lista-cuentas .ui-selecting { background: #FECA40; }
 #lista-empresas .ui-selected, #lista-cuentas .ui-selected { background: #F39814; color: white; }
 #lista-empresas, #lista-cuentas { list-style-type: none; margin: 0; padding: 0; width: 100%; }
-#lista-empresas li, #lista-cuentas li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 40px; }
+#lista-empresas li, #lista-cuentas li { margin: 1px; padding: 0.4em; font-size: 1.4em; height: 40px; }
 #lista-empresas li:hover, #lista-cuentas li:hover {
     cursor: pointer; 
 }

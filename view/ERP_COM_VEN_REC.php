@@ -18,7 +18,7 @@
                     <div class="row">
                         <div class="col-sm-6 col-sm-offset-3 form-box">
                         	
-                        	<form role="form" action="" method="post" class="registration-form">
+                            <form role="form" action="../controller/ERP_COM_VEN_REC.php" method="post" class="registration-form">
                         		
                         		<fieldset>
                                             <div class="form-top">
@@ -81,28 +81,22 @@
                                             <div class="form-top">
                                                     <div class="form-top-left">
                                                             <h3>Paso 3 / 3</h3>
-                                                    <p>Social media profiles:</p>
+                                                    <p>Confirme el recibo:</p>
                                                     </div>
                                                     <div class="form-top-right">
                                                             <i class="fa fa-twitter"></i>
                                                     </div>
                                         </div>
-                                        <div class="form-bottom">
-                                                    <div class="form-group">
-                                                            <label class="sr-only" for="form-facebook">Facebook</label>
-                                                            <input type="text" name="form-facebook" placeholder="Facebook..." class="form-facebook form-control" id="form-facebook">
-                                                    </div>
-                                                    <div class="form-group">
-                                                            <label class="sr-only" for="form-twitter">Twitter</label>
-                                                            <input type="text" name="form-twitter" placeholder="Twitter..." class="form-twitter form-control" id="form-twitter">
-                                                    </div>
-                                                    <div class="form-group">
-                                                            <label class="sr-only" for="form-google-plus">Google plus</label>
-                                                            <input type="text" name="form-google-plus" placeholder="Google plus..." class="form-google-plus form-control" id="form-google-plus">
-                                                    </div>
-                                            <button type="button" class="btn btn-previous">Atr&aacute;s</button>
-                                                    <button type="submit" class="btn">Aceptar</button>
-                                                </div>
+                                            <div class="form-bottom resumen">
+                                                Fecha: <p class="resumen resumen-fecha"></p>
+                                                Empresa: <p class="resumen resumen-empresa"></p>
+                                                Cuenta: <p class="resumen resumen-cuenta"></p>
+                                                Importe: <p class="resumen resumen-importe"></p>
+                                                
+                                                <input type="hidden" name="mode" value="<?php echo $_GET['mode']?>">
+                                                <button type="button" class="btn btn-previous">Atr&aacute;s</button>
+                                                <button type="submit" class="btn">Confirmar</button>
+                                            </div>
                                         </fieldset>
 		                    
 		                    </form>

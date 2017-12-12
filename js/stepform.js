@@ -60,13 +60,28 @@ jQuery(document).ready(function() {
                     fila = '';
                     //Recorro el JSON y agrego un item de lista por cada cuenta encontrada
                     $.each(response, function(i, member) {
-                        fila += '<li class="ui-widget-content item-cuenta" id="'+response[i].ID+'" onclick="verificarCuenta();">'+response[i].DESCRIPCION+'</li>';
+                        fila += '<li class="ui-widget-content item-cuenta" id="'+response[i].ID+'"">'+response[i].DESCRIPCION+'</li>';
                     });
                     $('#lista-cuentas').html(fila);
-                    $('#lista-cuentas').selectable();
-                    $('#loading-cuentas').hide();
+                    $('#lista-cuentas').selectable({
+                        selected: function(event, ui){
+                            seleccion = $('li.item-cuenta.ui-selected').length;
+                            if(seleccion === 1){
+                                $('.next2').prop("disabled", false);
+                                $('#form-cuenta').val($('li.item-cuenta.ui-selected').attr("id"));
+                            }else $('.next2').prop("disabled", true);
+                        }
+                    });
                 });
             }
+            //Cargo resumen en el 3er paso
+            if($(this).hasClass("next2")){
+                $('.resumen-cuenta').html($('#form-cuenta').val());
+                $('.resumen-empresa').html($('#form-empresa').val());
+                $('.resumen-fecha').html($('#fecha-desc').val());
+                $('.resumen-importe').html($('#form-importe').val());
+            }
+            
             parent_fieldset.fadeOut(400, function() {
                     $(this).next().fadeIn();
             });
