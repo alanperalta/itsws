@@ -124,7 +124,7 @@ jQuery(document).ready(function() {
           data: $(this).serialize(),
           type: 'POST'
       }).done(function(response){
-          //Algo
+          alert(response);
       });
   });
 });
