@@ -18,13 +18,13 @@ if(!$do_login['error']) {
 
                 //Asigno valores del recibo
                 $dataset = $prepareAppend['data'];
-                $dataset->ROWDATA->ROW[0]->FECHA = $_POST['form-fecha'];
-                $dataset->ROWDATA->ROW[0]->FK_ERP_T_COM_VEN = $tipCom;
-                $dataset->ROWDATA->ROW[0]->FK_ERP_EMPRESAS = $_POST['form-empresa'];
-                $dataset->ROWDATA->ROW[0]->IMP_A_CTA = $_POST['form-importe'];
-                $dataset->ROWDATA->ROW[0]->OBSERVACIONES = $_POST['form-observaciones'];
-                $dataset->ROWDATA->ROW[0]->ERP_DET_TES->FK_ERP_CUE_TES = $_POST['form-cuenta'];
-                $dataset->ROWDATA->ROW[0]->ERP_DET_TES->ROWTIPO = 'D';
+                $dataset->ROWDATA->ROW['FECHA']= $_POST['form-fecha'];
+                $dataset->ROWDATA->ROW['FK_ERP_T_COM_VEN'] = $tipCom;
+                $dataset->ROWDATA->ROW['FK_ERP_EMPRESAS'] = $_POST['form-empresa'];
+                $dataset->ROWDATA->ROW['IMP_A_CTA'] = $_POST['form-importe'];
+                $dataset->ROWDATA->ROW['OBSERVACIONES'] = $_POST['form-observaciones'];
+                $dataset->ROWDATA->ROW->ERP_DET_TES->ROW->FK_ERP_CUE_TES = $_POST['form-cuenta'];
+                $dataset->ROWDATA->ROW->ERP_DET_TES->ROW->TIPO = 'D';
 
                 $set_data = $Itris->ItsSetData( $soapClient , $UserSession , $prepareAppend['DataSession'] , $dataset );
                 if(!$set_data['error']) {
@@ -36,10 +36,12 @@ if(!$do_login['error']) {
                     } else {
                         // Fallo en la inserción. El mensaje de error queda guardado en $post['message'];
                         echo "error post: ".$post['message'];
+                        exit();
                     }
                 } else {
                     // Fallo en la inserción. El mensaje de error queda guardado en $set_data['message'];
                     echo "error setdata: ".$set_data['message'];
+                    exit();
                 }
 
                 $do_logout = logout($UserSession);
