@@ -501,12 +501,13 @@
 						if(!isset($json_rowdata[$key][$key_row][1])){
 							$nested_row_detail = $xml->createElement($key_row);
 							foreach ($json_rowdata[$key][$key_row] as $index => $row) {
-								
-								foreach ($json_rowdata[$key][$key_row] as $key_nested_detail => $value_nested_detail){
-									$domAttribute = $xml->createAttribute($key_nested_detail);
-									$domAttribute->value = $value_nested_detail;
-									$nested_row_detail->appendChild($domAttribute);
-								}
+								if($index == '@attributes'){
+                                                                    foreach ($json_rowdata[$key][$key_row][$index] as $key_nested_detail => $value_nested_detail){
+                                                                            $domAttribute = $xml->createAttribute($key_nested_detail);
+                                                                            $domAttribute->value = $value_nested_detail;
+                                                                            $nested_row_detail->appendChild($domAttribute);
+                                                                    }
+                                                                }
 								
 							}
 
@@ -533,7 +534,7 @@
 			$xml_datapacket->appendChild($xml_metadata);
 			$xml_datapacket->appendChild($xml_rowdata);
 			$xml->appendChild($xml_datapacket);
-
+//                        echo $xml->saveXML(); exit();
 			return $xml->saveXML();
  		}
  		// End JSON to XML

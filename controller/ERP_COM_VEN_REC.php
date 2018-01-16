@@ -7,7 +7,7 @@ if(!$do_login['error']) {
     $Itris = new Itris;
     $client = $Itris->ItsCreateClient( $ws , $soapClient );
 
-    $get_data = $Itris->ItsGetData( $soapClient ,  $UserSession , '_APP_PARAMETROS');
+    $get_data = $Itris->ItsGetData( $soapClient ,  $UserSession , 'ERP_COM_VEN_REC');
     if(!$get_data['error']) {
         //Traigo tipo de comprobante de recibos
         $tipCom = (string)$get_data['data']->ROWDATA->ROW[0]['FK_ERP_T_COM_VEN_REC'];
@@ -23,8 +23,11 @@ if(!$do_login['error']) {
                 $dataset->ROWDATA->ROW['FK_ERP_EMPRESAS'] = $_POST['form-empresa'];
                 $dataset->ROWDATA->ROW['IMP_A_CTA'] = $_POST['form-importe'];
                 $dataset->ROWDATA->ROW['OBSERVACIONES'] = $_POST['form-observaciones'];
-                $dataset->ROWDATA->ROW->ERP_DET_TES->ROW->FK_ERP_CUE_TES = $_POST['form-cuenta'];
-                $dataset->ROWDATA->ROW->ERP_DET_TES->ROW->TIPO = 'D';
+                $dataset->ROWDATA->ROW['FK_ERP_UNI_NEG'] = '1';
+//                $dataset->ROWDATA->ROW->ERP_DET_TES->ROW[0]['FK_ERP_CUE_TES'] = $_POST['form-cuenta'];
+//                $dataset->ROWDATA->ROW->ERP_DET_TES->ROW[0]['TIPO'] = 'D';
+                $dataset->ROWDATA->ROW->ERP_DET_TES->ROW[0]['FK_ERP_CUE_TES'] = '14';
+                $dataset->ROWDATA->ROW->ERP_DET_TES->ROW[0]['TIPO'] = 'H';
 
                 $set_data = $Itris->ItsSetData( $soapClient , $UserSession , $prepareAppend['DataSession'] , $dataset );
                 if(!$set_data['error']) {

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DATAPACKET>
+    <METADATA>
+        <FIELDS>
+            <FIELD attrname="ID" fieldtype="string" WIDTH="16"/>
+            <FIELD attrname="FECHA" fieldtype="date"/>
+            <FIELD attrname="FK_ERP_T_COM_VEN" fieldtype="string" WIDTH="3"/>
+            <FIELD attrname="FK_ERP_EMPRESAS" fieldtype="string" WIDTH="15"/>
+            <FIELD attrname="RAZON_SOCIAL" fieldtype="string" WIDTH="100"/>
+            <FIELD attrname="FK_ERP_TALONARIOS" fieldtype="i4"/>
+            <FIELD attrname="NUM_COM" fieldtype="string" WIDTH="13"/>
+            <FIELD attrname="FK_ERP_ASESORES" fieldtype="i4"/>
+            <FIELD attrname="Z_FK_ERP_ASESORES" fieldtype="string" WIDTH="100"/>
+            <FIELD attrname="FK_ERP_UNI_NEG" fieldtype="i4"/>
+            <FIELD attrname="Z_FK_ERP_UNI_NEG" fieldtype="string" WIDTH="50"/>
+            <FIELD attrname="OBSERVACIONES" fieldtype="string" WIDTH="100"/>
+            <FIELD attrname="IMP_A_CTA" fieldtype="fixed" DECIMALS="2" WIDTH="12"/>
+            <FIELD attrname="IMP_TOT_COT" fieldtype="fixed" DECIMALS="2" WIDTH="12"/>
+            <FIELD attrname="FK_ERP_MONEDAS" fieldtype="i4"/>
+            <FIELD attrname="Z_FK_ERP_MONEDAS" fieldtype="string" WIDTH="10"/>
+            <FIELD attrname="COTIZACION" fieldtype="fixed" DECIMALS="4" WIDTH="12"/>
+            <FIELD attrname="IMP_TOTAL" fieldtype="fixed" DECIMALS="2" WIDTH="12"/>
+            <FIELD attrname="FK_ERP_COM_VEN_PED" fieldtype="string" WIDTH="16"/>
+            <FIELD attrname="FK_ERP_CONT_SER_REC" fieldtype="string" WIDTH="16"/>
+            <FIELD attrname="Z_FK_ERP_CONT_SER_REC" fieldtype="string" WIDTH="13"/>
+            <FIELD attrname="ERP_IMP_VEN" fieldtype="nested">
+                <FIELDS>
+                    <FIELD attrname="IDD" fieldtype="i4"/>
+                    <FIELD attrname="FK_ERP_DEB_VEN" fieldtype="string" WIDTH="16"/>
+                    <FIELD attrname="IMP_COT" fieldtype="fixed" DECIMALS="2" WIDTH="12"/>
+                    <FIELD attrname="FK_ERP_MONEDAS" fieldtype="i4"/>
+                    <FIELD attrname="Z_FK_ERP_MONEDAS" fieldtype="string" WIDTH="10"/>
+                    <FIELD attrname="VTO" fieldtype="date"/>
+                </FIELDS>
+            </FIELD>
+            <FIELD attrname="ERP_DET_TES" fieldtype="nested">
+                <FIELDS>
+                    <FIELD attrname="IDD" fieldtype="i4"/>
+                    <FIELD attrname="FK_ERP_CUE_TES" fieldtype="fixed" WIDTH="11"/>
+                    <FIELD attrname="DES_CUE_TES" fieldtype="string" WIDTH="50"/>
+                    <FIELD attrname="FK_ERP_CEN_COSTO" fieldtype="i4"/>
+                    <FIELD attrname="Z_FK_ERP_CEN_COSTO" fieldtype="string" WIDTH="50"/>
+                    <FIELD attrname="FK_ERP_UNI_NEG" fieldtype="i4"/>
+                    <FIELD attrname="Z_FK_ERP_UNI_NEG" fieldtype="string" WIDTH="50"/>
+                    <FIELD attrname="TIPO" fieldtype="string" WIDTH="2"/>
+                    <FIELD attrname="Z_TIPO" fieldtype="string" WIDTH="5"/>
+                    <FIELD attrname="FK_ERP_CHE_TER" fieldtype="i4"/>
+                    <FIELD attrname="Z_FK_ERP_CHE_TER" fieldtype="fixed" WIDTH="11"/>
+                    <FIELD attrname="FK_ERP_RET_VEN" fieldtype="i4"/>
+                    <FIELD attrname="Z_FK_ERP_RET_VEN" fieldtype="string" WIDTH="16"/>
+                    <FIELD attrname="FK_ERP_CUPONES" fieldtype="i4"/>
+                    <FIELD attrname="Z_FK_ERP_CUPONES" fieldtype="i4"/>
+                    <FIELD attrname="FK_ERP_VALES" fieldtype="string" WIDTH="10"/>
+                    <FIELD attrname="Z_FK_ERP_VALES" fieldtype="i4"/>
+                    <FIELD attrname="UNIDADES" fieldtype="fixed" DECIMALS="2" WIDTH="12"/>
+                    <FIELD attrname="COTIZACION" fieldtype="fixed" DECIMALS="4" WIDTH="12"/>
+                    <FIELD attrname="IMPORTE" fieldtype="fixed" DECIMALS="2" WIDTH="12"/>
+                    <FIELD attrname="OBSERVACIONES" fieldtype="string" WIDTH="50"/>
+                </FIELDS>
+            </FIELD>
+        </FIELDS>
+    </METADATA>
+    <ROWDATA>
+        <ROW ID="" FECHA="2018-01-02" FK_ERP_T_COM_VEN="RD" FK_ERP_EMPRESAS="CELULOIDE" RAZON_SOCIAL="" FK_ERP_TALONARIOS="842" NUM_COM="" Z_FK_ERP_ASESORES="" Z_FK_ERP_UNI_NEG="" OBSERVACIONES="uuu" IMP_TOT_COT="0.00" FK_ERP_MONEDAS="1" Z_FK_ERP_MONEDAS="$" COTIZACION="1.0000" IMP_TOTAL="0.00" FK_ERP_COM_VEN_PED="" FK_ERP_CONT_SER_REC="" Z_FK_ERP_CONT_SER_REC="" IMP_A_CTA="1000">
+            <ERP_DET_IMV/>
+            <ERP_IMP_VEN/>
+            <ERP_DET_TES>
+                <ROW FK_ERP_CUE_TES="1" TIPO="D"/>
+            </ERP_DET_TES>
+            <ERP_DET_CUO_CRE_OTR_SUC/>
+        </ROW>
+    </ROWDATA>
+</DATAPACKET>

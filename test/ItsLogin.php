@@ -9,7 +9,7 @@
 		Importa al fichero la clase {Itris}.
 
 	-------------------------------------------*/
-	require_once('../ItrisSDK.php');
+//	require_once('../lib/nusoap.php');
 
 	/*-----------------------------------------
 
@@ -23,35 +23,38 @@
 		}
 
 	-------------------------------------------*/
-	require_once('../ConfigItrisWS.php');
+	require_once('../includes/ConfigItrisWS.php');
 
 	// Instancia la clase Itris importada en {ItrisSDK}
-	$Itris = new Itris;
+	$oSoapClient = new SoapClient($ws);
+        $itsParameters = array(
+				'DBName' => 'PRUEBA',
+				'UserName' => 'alan',
+				'UserPwd' => 'x1234567',
+				'LicType' => 'WS',
+				'UserSession' => ''
+			);
+        try{
+        $LoginResponse = $oSoapClient -> ItsLogin( $itsParameters );
+        } catch (Exception $e){
+        echo $e->getMessage();
+        }
+        
 	// Creación del cliente SOAP con $ws. Instancia $soapClient por referencia en ItrisSDK.
-	$client = $Itris->ItsCreateClient( $ws , $soapClient );
-
-	if($client['error']){
-		echo $client['message'];
-		//exit;
-	};
 	
-	$do_login = $Itris->ItsLogin( $soapClient ,$db, $user , $pass , $UserSession );
-	
-	if(!$do_login['error']) {
+        $DataResult = $LoginResponse->ItsLoginResult;
+			$UserSession = $LoginResponse->UserSession;
 
-		$UserSession = $do_login['UserSession'];
-		echo ($do_login['message'] . ': ' . $UserSession . '<br>');
+			if($DataResult == 0) {
+				$response = array(
+					'status' => 201,
+					'message' => 'Inicio de sesión exitoso',
+					'error' => false,
+					'UserSession' => $UserSession
+				);
+			} else if ($DataResult == 1) {
+				$response = $oSoapClient ->ItsGetLastError (array('UserSession' => $UserSession));
+			}
 
-		$do_logout = $Itris->ItsLogout( $soapClient , $UserSession );
-
-		if(!$do_logout['error']) {
-			echo ($do_logout['message'] . '<br>');
-		} else {
-			echo ($do_logout['message'] . '<br>');
-		}
-
-	} else if ($do_login['error']) {
-		echo $do_login['message'] . '<br>';
-	}
-	
-
+			var_dump($response);
+        
