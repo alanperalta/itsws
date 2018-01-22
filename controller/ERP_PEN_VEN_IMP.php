@@ -2,19 +2,20 @@
     require_once('../includes/ConfigItrisWS.php');
     session_start();
     $client = new SoapClient($ws);
-    $parametros = array(
-        'DBName' => $_SESSION['db'],
-        'UserName' => $_SESSION['user'],
-        'UserPwd' => $_SESSION['password'],
-        'LicType' => 'WS',
-        'UserSession' => ''
-    );
-    
-    $do_login = $client->ItsLogin($parametros);
-    if(!$do_login->ItsLoginResult) {
+//    $parametros = array(
+//        'DBName' => $_SESSION['db'],
+//        'UserName' => $_SESSION['user'],
+//        'UserPwd' => $_SESSION['password'],
+//        'LicType' => 'WS',
+//        'UserSession' => ''
+//    );
+//    
+//    $do_login = $client->ItsLogin($parametros);
+//    if(!$do_login->ItsLoginResult){
+    if(isset($_SESSION['userSession'])) {
 
-		$UserSession = $do_login->UserSession;
-                $paramData = array('UserSession' => $UserSession,
+		$userSession = $_SESSION['userSession'];
+                $paramData = array('UserSession' => $userSession,
  				'ItsClassName' => 'ERP_PEN_VEN_IMP',
  				'RecordCount' => 500,
  				'SQLFilter' => '',
@@ -48,21 +49,14 @@
                         if(isset($empresa)){
                             $datos[] = array('EMPRESA' => $empresa, 'SALDO' => $saldo, 'RAZON_SOCIAL' => $razSoc);
                         }
-                
-			$do_logout = $client->ItsLogout($UserSession);
-
-			if($do_logout->ItsLogoutResult){
-                            echo ItsError($client, $UserSession);
-                            exit();
-			}
 
 		} else {
-			echo ItsError($client, $UserSession);
+			echo ItsError($client, $userSession);
                         exit();
 		}
 
 	} else {
-		echo (ItsError($client, $UserSession) . '<br>');
+		echo ('Sesi&oacute;n finalizada, debe volver a loguearse.');
                 exit();
 	}
 

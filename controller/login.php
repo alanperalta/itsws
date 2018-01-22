@@ -25,7 +25,7 @@
         $_SESSION['db'] = $db;
         $_SESSION['password'] = $password;
         $_SESSION['userSession'] = $do_login->UserSession;
-        $client->ItsLogout($_SESSION['userSession']);
+        //$client->ItsLogout(array('UserSession' => $_SESSION['userSession']));
     }else{
         $data['message'] = ItsError($client, $do_login->UserSession);
     }

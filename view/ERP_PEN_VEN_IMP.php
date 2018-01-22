@@ -10,7 +10,7 @@
             <li class="list-group-item <?=($row['SALDO'] <= 0)?"list-green":"list-red"?>">
                 <div class="row toggle" id="dropdown-detail-<?=$i?>" data-toggle="detail-<?=$i?>">
                     <div class="col-xs-8">
-                        <?php echo $row['RAZON_SOCIAL']."(".$row['EMPRESA']."): $".number_format($row['SALDO'],2,',','.');?>
+                        <?php echo utf8_decode($row['RAZON_SOCIAL'])."(".$row['EMPRESA']."): $".number_format($row['SALDO'],2,',','.');?>
                     </div>
                     <div class="col-xs-2 pull-right"><i class="fa fa-chevron-down pull-right"></i></div>
                 </div>
@@ -24,7 +24,7 @@
                                     <th>Importe</th>
                                     <th>Saldo</th>
                                 </tr>
-                                <?php foreach ($get_data['data']->ROWDATA->ROW as $key => $row_item) { 
+                                <?php foreach ($getDataResult->ROWDATA->ROW as $key => $row_item) { 
                                     if((string)$row_item['FK_ERP_EMPRESAS'] == $row['EMPRESA']){?>
                                 <tr>
                                     <td><?= date('d/m/Y',strtotime($row_item['FECHA']))?></td>
