@@ -1,20 +1,36 @@
 <?php
     require_once('../includes/ConfigItrisWS.php');
     session_start();
-    $do_login = login($_SESSION['db'], $_SESSION['user'], $_SESSION['password']);
-    if(!$do_login['error']) {
+    $client = new SoapClient($ws);
+//    $parametros = array(
+//        'DBName' => $_SESSION['db'],
+//        'UserName' => $_SESSION['user'],
+//        'UserPwd' => $_SESSION['password'],
+//        'LicType' => 'WS',
+//        'UserSession' => ''
+//    );
+//    
+//    $do_login = $client->ItsLogin($parametros);
+//    if(!$do_login->ItsLoginResult){
+    if(isset($_SESSION['userSession'])) {
 
-		$UserSession = $do_login['UserSession'];
-                $Itris = new Itris;
-                $client = $Itris->ItsCreateClient( $ws , $soapClient );
-                
-		$get_data = $Itris->ItsGetData( $soapClient ,  $UserSession , 'ERP_PEN_COM_IMP', 500, '', 'RAZ_SOCIAL ASC');
-		if(!$get_data['error']) {
+		$userSession = $_SESSION['userSession'];
+                $paramData = array('UserSession' => $userSession,
+ 				'ItsClassName' => 'ERP_PEN_COM_IMP',
+ 				'RecordCount' => 500,
+ 				'SQLFilter' => '',
+ 				'SQLSort' => 'RAZ_SOCIAL ASC'
+                    
+                );
+		$get_data = $client->ItsGetData($paramData);
+		if(!$get_data->ItsGetDataResult) {
                         $primero = true;
                         $saldo = 0;
                         $datos = array();
+                        
+                        $getDataResult = simplexml_load_string($get_data->XMLData);
                         //Recorro los datos y acumulo saldos por empresa
-                        foreach ($get_data['data']->ROWDATA->ROW as $key => $row ) {
+                        foreach ($getDataResult->ROWDATA->ROW as $key => $row ) {
                             if($primero){
                                 $primero = FALSE;
                                 $empresa = (string)$row['FK_ERP_EMPRESAS'];
@@ -33,21 +49,14 @@
                         if(isset($empresa)){
                             $datos[] = array('EMPRESA' => $empresa, 'SALDO' => $saldo, 'RAZ_SOCIAL' => $razSoc);
                         }
-                
-			$do_logout = logout($UserSession);
-
-			if($do_logout['error']){
-                            echo $do_logout['message'];
-                            exit();
-			}
 
 		} else {
-			echo $get_data['message'];
+			echo ItsError($client, $userSession);
                         exit();
 		}
 
-	} else if ($do_login['error']) {
-		echo ($do_login['message'] . '<br>');
+	} else {
+		echo ('Sesi&oacute;n finalizada, debe volver a loguearse.');
                 exit();
 	}
 

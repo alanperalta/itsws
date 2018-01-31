@@ -1,33 +1,35 @@
 <?php
 require_once('../includes/ConfigItrisWS.php');
 session_start();
-$do_login = login($_SESSION['db'], $_SESSION['user'], $_SESSION['password']);
-if(!$do_login['error']) {
-    $UserSession = $do_login['UserSession'];
-    $Itris = new Itris;
-    $client = $Itris->ItsCreateClient( $ws , $soapClient );
+$client = new SoapClient($ws);
 
-    $get_data = $Itris->ItsGetData( $soapClient ,  $UserSession , 'ERP_EMPRESAS', 10, "DESCRIPCION LIKE '%".$_POST['clave']."%'", 'DESCRIPCION ASC');
-    if(!$get_data['error']) {
-        $do_logout = logout($UserSession);
+if(isset($_SESSION['userSession'])) {
 
-        if($do_logout['error']){
-            echo $do_logout['message'];
-            exit();
-        }
+    $userSession = $_SESSION['userSession'];
+    $paramData = array('UserSession' => $userSession,
+                    'ItsClassName' => 'ERP_EMPRESAS',
+                    'RecordCount' => 10,
+                    'SQLFilter' => "DESCRIPCION LIKE '%".$_POST['clave']."%'",
+                    'SQLSort' => 'DESCRIPCION ASC'
+
+    );
+    $get_data = $client->ItsGetData($paramData);
+    if(!$get_data->ItsGetDataResult) {
         $data = array();
-        foreach ($get_data['data']->ROWDATA->ROW as $row){
+        $getDataResult = simplexml_load_string($get_data->XMLData);
+        
+        foreach ($getDataResult->ROWDATA->ROW as $row){
             $data[] = array('ID' => (string)$row['ID'], 'DESCRIPCION' => (string)$row['DESCRIPCION']);
         }
         $json = json_encode($data);
         echo $json;
 
     } else {
-            echo $get_data['message'];
-            exit();
-    }
-
-} else if ($do_login['error']) {
-        echo ($do_login['message'] . '<br>');
+        echo ItsError($client, $userSession);
         exit();
+    }
+} else {
+    echo ('Sesi&oacute;n finalizada, debe volver a loguearse.');
+    exit();
 }
+

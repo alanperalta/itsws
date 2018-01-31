@@ -1,23 +1,31 @@
 <?php
 require_once('../includes/ConfigItrisWS.php');
 session_start();
-$do_login = login($_SESSION['db'], $_SESSION['user'], $_SESSION['password']);
-if(!$do_login['error']) {
-    $UserSession = $do_login['UserSession'];
-    $Itris = new Itris;
-    $client = $Itris->ItsCreateClient( $ws , $soapClient );
+$client = new SoapClient($ws);
 
-    $get_data = $Itris->ItsGetData( $soapClient ,  $UserSession , 'ERP_COM_VEN_REC');
-    if(!$get_data['error']) {
-        //Traigo tipo de comprobante de recibos
-        $tipCom = (string)$get_data['data']->ROWDATA->ROW[0]['FK_ERP_T_COM_VEN_REC'];
+if(isset($_SESSION['userSession'])) {
+    $userSession = $_SESSION['userSession'];
+    $paramData = array('UserSession' => $userSession,
+                    'ItsClassName' => '_APP_PARAMETROS',
+                    'RecordCount' => 0,
+                    'SQLFilter' => '',
+                    'SQLSort' => ''
+
+    );
+    $get_data = $client->ItsGetData($paramData);
+    if(!$get_data->ItsGetDataResult) {
+        $getDataResult = simplexml_load_string($get_data->XMLData);
         
-        $prepareAppend = $Itris->ItsPrepareAppend( $soapClient , $UserSession , 'ERP_COM_VEN_REC' );
+        //Traigo tipo de comprobante de recibos
+        $tipCom = (string)$getDataResult->ROWDATA->ROW[0]['FK_ERP_T_COM_VEN_REC'];
+        
+        $prepareAppend = $client->ItsPrepareAppend( array($soapClient , $UserSession , 'ERP_COM_VEN_REC'));
 
-            if(!$prepareAppend['error']) {
+            if(!$prepareAppend->ItsPrepareAppendResult) {
 
+                $dataset = simplexml_load_string($prepareAppend->XMLData);
+                
                 //Asigno valores del recibo
-                $dataset = $prepareAppend['data'];
                 $dataset->ROWDATA->ROW['FECHA']= $_POST['form-fecha'];
                 $dataset->ROWDATA->ROW['FK_ERP_T_COM_VEN'] = $tipCom;
                 $dataset->ROWDATA->ROW['FK_ERP_EMPRESAS'] = $_POST['form-empresa'];
@@ -29,40 +37,33 @@ if(!$do_login['error']) {
                 $dataset->ROWDATA->ROW->ERP_DET_TES->ROW[0]['FK_ERP_CUE_TES'] = '14';
                 $dataset->ROWDATA->ROW->ERP_DET_TES->ROW[0]['TIPO'] = 'H';
 
-                $set_data = $Itris->ItsSetData( $soapClient , $UserSession , $prepareAppend['DataSession'] , $dataset );
-                if(!$set_data['error']) {
+                $set_data = $client->ItsSetData(array($userSession , $prepareAppend->DataSession , $dataset->asXML()));
+                if(!$set_data->ItsSetDataResult) {
 
-                    $post = $Itris->ItsPost( $soapClient, $UserSession , $prepareAppend['DataSession'] );
-                    if(!$post['error']) {
+                    $post = $client->ItsPost(array($userSession , $prepareAppend->DataSession));
+                    if(!$post->ItsPostResult) {
                                             // Inserción realizada con éxito.
                                             echo "Se inserto el recibo con exito";
                     } else {
                         // Fallo en la inserción. El mensaje de error queda guardado en $post['message'];
-                        echo "error post: ".$post['message'];
+                        echo "error post: ".ItsError($client, $userSession);
                         exit();
                     }
                 } else {
                     // Fallo en la inserción. El mensaje de error queda guardado en $set_data['message'];
-                    echo "error setdata: ".$set_data['message'];
-                    exit();
-                }
-
-                $do_logout = logout($UserSession);
-
-                if($do_logout['error']){
-                    echo "error logout: ".$do_logout['message'];
+                    echo "error setdata: ".ItsError($client, $userSession);
                     exit();
                 }
             } else {
-                echo "error prepareAppend: ".$prepareAppend['message'];
+                echo "error prepareAppend: ".ItsError($client, $userSession);
                 exit();
             }
     } else {
-            echo "error getdata: ".$get_data['message'];
+            echo "error getdata: ".$ItsError($client, $userSession);
             exit();
     }
 
-} else if ($do_login['error']) {
-        echo ("error login: ".$do_login['message'] . '<br>');
+} else {
+        echo ("error login: ".ItsError($client, $userSession) . '<br>');
         exit();
 }
