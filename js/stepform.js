@@ -114,7 +114,7 @@ jQuery(document).ready(function() {
     $( "#fecha-desc" ).datepicker({
         altField: "#form-fecha",
         dateFormat: "dd/mm/yy",
-        altFormat: "yy-mm-dd"
+        altFormat: "yymmdd"
   });
   
   $('form.registration-form').on('submit', function (event){

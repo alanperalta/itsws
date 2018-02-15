@@ -4,6 +4,6 @@
 	$ws = 'http://179.43.113.106/ITSWS/ItsCliSvrWS.asmx?WSDL';
         
         function ItsError($client, $userSession){
-            $error = $client->ItsGetLastError($userSession);
+            $error = $client->ItsGetLastError(array('UserSession' => $userSession));
             return $error->Error;
         }

@@ -61,4 +61,5 @@ $('#modal-input-empresa').keypress(function(event) {
 $('#btn-empresas').on("click", function(e){
     e.preventDefault();
     $('#modal-empresas').modal("show");
+    $('#modal-input-empresa').focus();
 });

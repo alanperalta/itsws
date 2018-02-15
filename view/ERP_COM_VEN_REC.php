@@ -34,7 +34,7 @@
                                                 <div class="form-group">
                                                     <label class="sr-only" for="form-first-name">Fecha</label>
                                                     <input type="text" name="fecha-desc" placeholder="Fecha..." class="form-fecha form-control" id="fecha-desc" readonly="" value="<?php echo date("d/m/Y")?>">
-                                                    <input type="hidden" name="form-fecha" id="form-fecha" value="<?php echo date("Y-m-d")?>">
+                                                    <input type="hidden" name="form-fecha" id="form-fecha" value="<?php echo date("Ymd")?>">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="sr-only" for="form-first-name">Empresa</label>
