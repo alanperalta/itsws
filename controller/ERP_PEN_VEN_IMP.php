@@ -19,7 +19,7 @@
  				'ItsClassName' => 'ERP_PEN_VEN_IMP',
  				'RecordCount' => 500,
  				'SQLFilter' => '',
- 				'SQLSort' => 'RAZON_SOCIAL ASC'
+ 				'SQLSort' => 'RAZON_SOCIAL ASC, _FK_ERP_UNI_NEG ASC'
                     
                 );
 		$get_data = $client->ItsGetData($paramData);
@@ -36,18 +36,20 @@
                                 $empresa = (string)$row['FK_ERP_EMPRESAS'];
                                 $razSoc = (string)$row['RAZON_SOCIAL'];
                                 $saldo += (real)$row['SALDO'];
-                            }elseif ($empresa == (string)$row['FK_ERP_EMPRESAS']) {
+                                $uniNeg = (string)$row['_FK_ERP_UNI_NEG'];
+                            }elseif ($empresa == (string)$row['FK_ERP_EMPRESAS'] && $uniNeg == (int)$row['_FK_ERP_UNI_NEG']) {
                                 $saldo += (real)$row['SALDO'];
                             }else{
-                                $datos[] = array('EMPRESA' => $empresa, 'SALDO' => $saldo, 'RAZON_SOCIAL' => $razSoc);
+                                $datos[] = array('EMPRESA' => $empresa, 'SALDO' => $saldo, 'RAZON_SOCIAL' => $razSoc, 'UNI_NEG' => $uniNeg);
                                 $empresa = (string)$row['FK_ERP_EMPRESAS'];
                                 $razSoc = (string)$row['RAZON_SOCIAL'];
                                 $saldo = (real)$row['SALDO'];
+                                $uniNeg = (string)$row['_FK_ERP_UNI_NEG'];
                             }
                         }
                         //Asigno ultimo saldo del for de empresas
                         if(isset($empresa)){
-                            $datos[] = array('EMPRESA' => $empresa, 'SALDO' => $saldo, 'RAZON_SOCIAL' => $razSoc);
+                            $datos[] = array('EMPRESA' => $empresa, 'SALDO' => $saldo, 'RAZON_SOCIAL' => $razSoc, 'UNI_NEG' => $uniNeg);
                         }
 
 		} else {

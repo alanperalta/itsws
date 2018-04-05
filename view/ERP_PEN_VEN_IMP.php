@@ -4,13 +4,29 @@
 	<div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">Pendientes de imputaci&oacute;n de ventas</h3>
+            <select onchange="cargarContenido('ERP_PEN_VEN_IMP',this.value)">
+                <option value="0" <?=(isset($_GET['uniNeg']) && $_GET['uniNeg'] == 0)?'selected':''?>>Todo</option>
+                <option value="1" <?=(isset($_GET['uniNeg']) && $_GET['uniNeg'] == 1)?'selected':''?>>Sistemas</option>
+                <option value="3" <?=(isset($_GET['uniNeg']) && $_GET['uniNeg'] == 3)?'selected':''?>>Revista</option>
+                <option value="4" <?=(isset($_GET['uniNeg']) && $_GET['uniNeg'] == 4)?'selected':''?>>Dami&aacute;n</option>
+                <option value="5" <?=(isset($_GET['uniNeg']) && $_GET['uniNeg'] == 5)?'selected':''?>>Liliana</option>
+                <option value="6" <?=(isset($_GET['uniNeg']) && $_GET['uniNeg'] == 6)?'selected':''?>>Consultor&iacute;a</option>
+            </select>
         </div>   
         <ul class="list-group">
-            <?php $i = 1; foreach ($datos as $key => $row) { ?>
+            <?php $i = 1; $total = 0; foreach ($datos as $key => $row) {
+                if(isset($_GET['uniNeg']) && ($_GET['uniNeg'] != $row['UNI_NEG']) && $_GET['uniNeg']){
+                    continue;
+                }
+            ?>
             <li class="list-group-item <?=($row['SALDO'] <= 0)?"list-green":"list-red"?>">
                 <div class="row toggle" id="dropdown-detail-<?=$i?>" data-toggle="detail-<?=$i?>">
                     <div class="col-xs-8">
-                        <?php echo utf8_decode($row['RAZON_SOCIAL'])."(".$row['EMPRESA']."): $".number_format($row['SALDO'],2,',','.');?>
+                        <?php 
+                            $saldo = number_format($row['SALDO'],2,',','.');
+                            $total += round($row['SALDO'], 2);
+                            echo utf8_decode($row['RAZON_SOCIAL'])."(".$row['EMPRESA']."): $".$saldo;
+                        ?>
                     </div>
                     <div class="col-xs-2 pull-right"><i class="fa fa-chevron-down pull-right"></i></div>
                 </div>
@@ -39,6 +55,7 @@
                 </div>
             </li>
             <?php $i++;} ?>
+            <li class="list-group-item total-pendiente"><?="TOTAL PENDIENTE: ".number_format($total,2,",",".")?></li>
         </ul>
 	</div>
 </div>

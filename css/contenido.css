@@ -258,3 +258,9 @@ only screen and (                min-resolution: 2dppx) {
     }
 	
 }
+
+.total-pendiente{
+    font-weight: bold;
+    float: right;
+    background-color: #eee;
+}
