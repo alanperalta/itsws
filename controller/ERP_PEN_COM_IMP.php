@@ -51,8 +51,13 @@
                         }
 
 		} else {
-			echo ItsError($client, $userSession);
-                        exit();
+			$error = ItsError($client, $userSession);
+                        if($error == 'Sesión no válida'){
+                            header("location: ../view/login.php");
+                        }else{
+                            echo $error;
+                            exit();
+                        }
 		}
 
 	} else {

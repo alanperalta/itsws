@@ -17,7 +17,7 @@
                         <select name="dbName" placeholder="Contrase&ntilde;a" id="dbName" class="form-control">
                             <option value="TGROUP">TGROUP</option>
                             <option value="TGROUP_LNR">LILIANA</option>
-                            <option value="PRUEBA" selected>PRUEBA</option>
+                            <!--<option value="PRUEBA" selected>PRUEBA</option>-->
                         </select>
                         <button class="btn btn-info btn-block login" type="submit">Ingresar</button>
                     </form>
