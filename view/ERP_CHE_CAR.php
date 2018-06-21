@@ -19,7 +19,7 @@
                 <th>Importe</th>
                 <th>Banco</th>
             </tr>
-            <?php foreach ($get_data['data']->ROWDATA->ROW as $key => $row_item) { ?>
+            <?php foreach ($get_data['data'] as $key => $row_item) { ?>
               <tr>
                   <td><?= date('d/m/Y',strtotime($row_item['FEC_DEP']))?></td>
                   <td><?=$row_item['NUMERO']?></td>

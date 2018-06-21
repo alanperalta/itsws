@@ -24,7 +24,7 @@
                                     <th>Importe</th>
                                     <th>Saldo</th>
                                 </tr>
-                                <?php foreach ($getDataResult->ROWDATA->ROW as $key => $row_item) { 
+                                <?php foreach ($getDataResult['data'] as $key => $row_item) { 
                                     if((string)$row_item['FK_ERP_EMPRESAS'] == $row['EMPRESA']){?>
                                 <tr>
                                     <td><?= date('d/m/Y',strtotime($row_item['FECHA']))?></td>

@@ -2,38 +2,26 @@
 require_once('../includes/ConfigItrisWS.php');
 session_start();
 
-$client = new SoapClient($ws);
-if(isset($_SESSION['userSession'])) {
-
-$userSession = $_SESSION['userSession'];
-$paramData = array('UserSession' => $userSession,
-                'ItsClassName' => '_APP_DET_CUE_TES',
-                'RecordCount' => 10,
-                'SQLFilter' => 'AFE_VEN = 1',
-                'SQLSort' => 'DESCRIPCION ASC'
-
-);
-$get_data = $client->ItsGetData($paramData);
-if(!$get_data->ItsGetDataResult) {
-    $getDataResult = simplexml_load_string($get_data->XMLData);
+$do_login = ItsLogin();
+if(!$do_login['error']) {
+$userSession = $do_login['usersession'];
+$getDataResult = ItsGetData($userSession, 'ERP_CUE_TES', '10', 'AFE_VEN = 1 AND _APP = 1', 'DESCRIPCION ASC');
+if(!$getDataResult['error']) {
     $data = array();
-    foreach ($getDataResult->ROWDATA->ROW as $row){
-        $id = (string)$row['FK_ERP_CUE_TES'];
-        //Hago esto, porque por algun motivo, el ID de la cuenta viene con un punto al final
-        if(substr($id, -1) == "."){
-            $id = substr($id, 0, -1);
-        }
+    foreach ($getDataResult['data'] as $row){
+        $id = (string)$row['ID'];
         $data[] = array('ID' => $id, 'DESCRIPCION' => (string)$row['DESCRIPCION']);
     }
+    ItsLogout($userSession);
     $json = json_encode($data);
     echo $json;
-
     } else {
-            echo ItsError($client, $userSession);
-            exit();
+        ItsLogout($userSession);
+        echo $getDataResult['message'];
+        exit();
     }
 
 } else{
-        echo ItsError($client, $userSession);
+        echo $do_login['message'];
         exit();
 }

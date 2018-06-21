@@ -1,35 +1,25 @@
 <?php
 require_once('../includes/ConfigItrisWS.php');
 session_start();
-$client = new SoapClient($ws);
-
-if(isset($_SESSION['userSession'])) {
-
-    $userSession = $_SESSION['userSession'];
-    $paramData = array('UserSession' => $userSession,
-                    'ItsClassName' => 'ERP_EMPRESAS',
-                    'RecordCount' => 10,
-                    'SQLFilter' => "DESCRIPCION LIKE '%".$_POST['clave']."%'",
-                    'SQLSort' => 'DESCRIPCION ASC'
-
-    );
-    $get_data = $client->ItsGetData($paramData);
-    if(!$get_data->ItsGetDataResult) {
+$do_login = ItsLogin();
+    if(!$do_login['error']) {
+    $userSession = $do_login['usersession'];
+    $getDataResult = ItsGetData($userSession, 'ERP_EMPRESAS', '10', "DESCRIPCION LIKE '%".$_POST['clave']."%'", 'DESCRIPCION ASC');
+    if(!$getDataResult['error']) {
         $data = array();
-        $getDataResult = simplexml_load_string($get_data->XMLData);
-        
-        foreach ($getDataResult->ROWDATA->ROW as $row){
+        foreach ($getDataResult['data'] as $row){
             $data[] = array('ID' => (string)$row['ID'], 'DESCRIPCION' => (string)$row['DESCRIPCION']);
         }
+        ItsLogout($userSession);
         $json = json_encode($data);
         echo $json;
-
     } else {
-        echo ItsError($client, $userSession);
+        ItsLogout($userSession);
+        echo $getDataResult['message'];
         exit();
     }
 } else {
-    echo ('Sesi&oacute;n finalizada, debe volver a loguearse.');
+    echo $do_login['message'];
     exit();
 }
 
