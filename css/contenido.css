@@ -264,3 +264,7 @@ only screen and (                min-resolution: 2dppx) {
     float: right;
     background-color: #eee;
 }
+
+.btn-gen-recibo{
+    margin-top: 20px;
+}

@@ -39,14 +39,19 @@
                                     <th>Nro</th>
                                     <th>Importe</th>
                                     <th>Saldo</th>
+                                    <th></th>
                                 </tr>
                                 <?php foreach ($getDataResult['data'] as $key => $row_item) { 
                                     if((string)$row_item['FK_ERP_EMPRESAS'] == $row['EMPRESA']){?>
                                 <tr>
                                     <td><?= date('d/m/Y',strtotime($row_item['FECHA']))?></td>
                                     <td><?=$row_item['FK_ERP_COM_VEN']?></td>
-                                    <td><?=$row_item['IMPORTE']?></td>
-                                    <td><?=$row_item['SALDO']?></td>
+                                    <td><?=number_format($row_item['IMPORTE'],2,",",".")?></td>
+                                    <td><?=number_format($row_item['SALDO'],2,",",".")?></td>
+                                    <td><?php if($row_item['SALDO'] > 0){ ?>
+                                        <input style="zoom:1.5;" type="checkbox" class="tilde-recibo" id="<?=$row_item['FK_ERP_EMPRESAS']."_".$row_item['FK_ERP_COM_VEN']?>" value="<?=$row_item['FK_ERP_COM_VEN']?>">
+                                    <?php } ?>
+                                    </td>
                                 </tr>
                                 <?php } 
                                 }?>
@@ -58,5 +63,6 @@
             <li class="list-group-item total-pendiente"><?="TOTAL PENDIENTE: ".number_format($total,2,",",".")?></li>
         </ul>
 	</div>
+    <button class="btn btn-primary btn-gen-recibo" id="gen-recibo">Generar recibo</button>
 </div>
 

@@ -1,17 +1,5 @@
-//modo = 0: Menú de recibos
-//Modo = 1: Recibo nuevo
-//Modo = 2: Recibo en base a factura
-
 function nuevoRecibo(){
     $('.contenido').load('../view/ERP_COM_VEN_REC.php?mode=1');
-}
-
-function nuevoReciboEnBase(){
-    $('.contenido').load('../view/ERP_COM_VEN_REC.php?mode=2');
-}
-
-function volverRecibo(){
-    $('.contenido').load('../view/ERP_COM_VEN_REC.php?mode=0');
 }
 
 function seleccionarEmpresa(){

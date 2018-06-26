@@ -14,13 +14,13 @@ if(!$do_login['error']) {
                 $dataset = array();
                 
                 //Asigno valores del recibo
-                //$dataset['FECHA']= $_POST['form-fecha'];
+                $dataset['FECHA']= $_POST['form-fecha'];
                 $dataset['FK_ERP_T_COM_VEN'] = $tipCom;
                 $dataset['FK_ERP_EMPRESAS'] = $_POST['form-empresa'];
                 $dataset['IMP_A_CTA'] = (float)$_POST['form-importe'];
                 $dataset['OBSERVACIONES'] = $_POST['form-observaciones'];
-                $dataset['FK_ERP_UNI_NEG'] = 1;
-                $dataset['ERP_DET_TES'][0]['FK_ERP_CUE_TES']= 14;
+                $dataset['FK_ERP_UNI_NEG'] = $_POST['form-uni-neg'];
+                $dataset['ERP_DET_TES'][0]['FK_ERP_CUE_TES']= (string)$getDataResult['data'][0]['FK_ERP_CUE_TES'];
                 $dataset['ERP_DET_TES'][0]['TIPO']= 'H';
                 $dataset['ERP_DET_TES'][0]['UNIDADES']= (float)$_POST['form-importe'];
                 $dataset['ERP_DET_TES'][1]['FK_ERP_CUE_TES']= (int)$_POST['form-cuenta'];
