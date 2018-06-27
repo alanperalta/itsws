@@ -47,9 +47,9 @@
                                     <td><?= date('d/m/Y',strtotime($row_item['FECHA']))?></td>
                                     <td><?=$row_item['FK_ERP_COM_VEN']?></td>
                                     <td><?=number_format($row_item['IMPORTE'],2,",",".")?></td>
-                                    <td><?=number_format($row_item['SALDO'],2,",",".")?></td>
+                                    <td class="saldo"><?=number_format($row_item['SALDO'],2,",",".")?></td>
                                     <td><?php if($row_item['SALDO'] > 0){ ?>
-                                        <input style="zoom:1.5;" type="checkbox" class="tilde-recibo" id="<?=$row_item['FK_ERP_EMPRESAS']."_".$row_item['FK_ERP_COM_VEN']?>" value="<?=$row_item['FK_ERP_COM_VEN']?>">
+                                        <input style="zoom:1.5;" type="checkbox" class="tilde-recibo" id="<?=$row_item['FK_ERP_EMPRESAS']."_".$row_item['FK_ERP_COM_VEN']?>" value="<?=$row_item['FK_ERP_COM_VEN']."_".$row_item['SALDO']?>">
                                     <?php } ?>
                                     </td>
                                 </tr>

@@ -34,18 +34,20 @@ $('#gen-recibo').on('click', function(){
 //Genera recibo
 function generarRecibo(){
     var fac = [];
+    console.log('x');
     $('.tilde-recibo:checked').each(function(){
-        fac.push($(this).val());
+        ele = {};
+        valores = ($(this).val()).split('_');
+        ele.id = valores[0];
+        ele.saldo = valores[1];
+        fac.push(ele);
     });
-    $.ajax({
-        type: "POST",
-        url: "script.php",
-        data: {data : fac}, 
-        cache: false,
-
-        success: function(){
-            alert("OK");
-        }
-    });
+    if(fac.length > 0){
+        var obj = fac.reduce(function(acc, cur, i) {
+            acc[i] = cur;
+            return acc;
+        }, {});
+        $('.contenido').load('../view/ERP_COM_VEN_REC.php', obj);
+    }
 }
 
