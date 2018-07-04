@@ -13,7 +13,29 @@
                                     <i class="fa fa-user"></i>
                                 </div>
                             </div>
+                            <!--Imputaciones de ventas -->
                             <div class="form-bottom">
+                                <?php 
+                                $i = 1;
+                                $total = 0;
+                                $empresa = '';
+                                foreach ($_POST as $factura) {
+                                         if($i === 1){
+                                            echo 'Imputaciones';
+                                            $empresa = $factura['empresa'];
+                                         }
+                                    ?>
+                                    <div class="form-group">
+                                        <label class="sr-only" for="form-fac-<?php echo $i?>">Factura</label>
+                                        <input type="text" name="form-fac-<?php echo $i?>" class="fac form-control" id="form-fac-<?php echo $i?>" readonly="" value="<?php echo $factura['id'];?>">
+                                        <label class="sr-only" for="form-imp-fac-<?php echo $i?>">Importe</label>
+                                        <input type="number" name="form-imp-fac-<?php echo $i?>" placeholder="Importe..." class="fac-imp form-control" id="form-imp-fac-<?php echo $i?>" step=".01" value="<?php echo number_format($factura['saldo'], 2, '.', '');?>">
+                                    </div>
+                                <?php $i++;
+                                $total += $factura['saldo'];
+                                if (($i-1) == count($_POST)){?>
+                                     <hr class="linea-fac"/>
+                                <?php }}?>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-first-name">Fecha</label>
                                     <input type="text" name="fecha-desc" placeholder="Fecha..." class="form-fecha form-control" id="fecha-desc" readonly="" value="<?php echo date("d/m/Y")?>">
@@ -21,17 +43,16 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-first-name">Empresa</label>
-                                    <input type="text" name="form-empresa" placeholder="Empresa..." class="form-empresa form-control" id="form-empresa" readonly="">
+                                    <input type="text" name="form-empresa" placeholder="Empresa..." class="form-empresa form-control" id="form-empresa" readonly="" value="<?php echo $empresa?>">
                                     <button id="btn-empresas" class="btn btn-primary btn-sm boton-empresa"><i class="fa fa-search"></i></button>
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-importe">Importe</label>
-                                    <input type="number" name="form-importe" placeholder="Importe..." class="form-importe form-control" id="form-importe" step=".01">
+                                    <input type="number" name="form-importe" placeholder="Importe..." class="form-importe form-control" id="form-importe" step=".01" value="<?php echo number_format($total, 2, '.', '')?>">
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-observaciones">Observaciones</label>
-                                    <textarea name="form-observaciones" placeholder="Observaciones..." 
-                                                                class="form-observaciones form-control" id="form-observaciones"></textarea>
+                                    <textarea name="form-observaciones" placeholder="Observaciones..." class="form-observaciones form-control" id="form-observaciones"></textarea>
                                 </div>
                                 <button type="button" class="btn btn-next next1">Siguiente</button>
                             </div>

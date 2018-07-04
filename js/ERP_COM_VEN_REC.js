@@ -51,3 +51,11 @@ $('#btn-empresas').on("click", function(e){
     $('#modal-empresas').modal("show");
     $('#modal-input-empresa').focus();
 });
+
+$('.fac-imp').on('change', function(){
+    total = 0;
+    $('.fac-imp').each(function(){
+        total += $(this).val();
+    });
+    $('#form-importe').val(total);
+});

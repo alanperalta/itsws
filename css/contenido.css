@@ -268,3 +268,17 @@ only screen and (                min-resolution: 2dppx) {
 .btn-gen-recibo{
     margin-top: 20px;
 }
+
+.fac{
+    display: inline;
+    width: 50%;
+}
+
+.fac-imp{
+    display: inline;
+    width: 40%;
+}
+
+.linea-fac{
+    border: 1px solid black;
+}

@@ -40,6 +40,7 @@ function generarRecibo(){
         valores = ($(this).val()).split('_');
         ele.id = valores[0];
         ele.saldo = valores[1];
+        ele.empresa = valores[2];
         fac.push(ele);
     });
     if(fac.length > 0){
