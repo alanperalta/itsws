@@ -46,6 +46,8 @@ function generarRecibo(){
         ele.uni_neg = valores[3];
         fac.push(ele);
     });
+    
+    //????????? no se que es esto pero es lo que necesitaba para que ande el código
     if(fac.length > 0){
         var obj = fac.reduce(function(acc, cur, i) {
             acc[i] = cur;
