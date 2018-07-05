@@ -11,14 +11,16 @@ $(document).ready(function() {
 //Validar generar recibo en base a facturas
 $('#gen-recibo').on('click', function(){
     var empresa = '';
+    var uni_neg = '';
     var ok = true;
     $('.tilde-recibo:checked').each(function(){
         var id = $(this).attr('id');
         emp = id.split('_');
         if(empresa == ''){
             empresa = emp[0];
+            uni_neg = emp[2];
         }else{
-            if(empresa != emp[0]){
+            if(empresa != emp[0] || uni_neg != emp[2]){
                 ok = false;
                 return false;
             }
@@ -27,7 +29,7 @@ $('#gen-recibo').on('click', function(){
     if(ok){
         generarRecibo();
     }else{
-        alert('No se puede generar un recibo para facturas de distintas empresas');
+        alert('No se puede generar un recibo para facturas de distintas empresas o distintas unidades de negocios');
     }
 });
 
@@ -41,6 +43,7 @@ function generarRecibo(){
         ele.id = valores[0];
         ele.saldo = valores[1];
         ele.empresa = valores[2];
+        ele.uni_neg = valores[3];
         fac.push(ele);
     });
     if(fac.length > 0){

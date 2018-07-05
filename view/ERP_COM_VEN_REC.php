@@ -16,13 +16,14 @@
                             <!--Imputaciones de ventas -->
                             <div class="form-bottom">
                                 <?php 
-                                $i = 1;
+                                $i = 0;
                                 $total = 0;
                                 $empresa = '';
                                 foreach ($_POST as $factura) {
-                                         if($i === 1){
+                                         if($i === 0){
                                             echo 'Imputaciones';
                                             $empresa = $factura['empresa'];
+                                            $uniNeg = $factura['uni_neg'];
                                          }
                                     ?>
                                     <div class="form-group">
@@ -33,18 +34,29 @@
                                     </div>
                                 <?php $i++;
                                 $total += $factura['saldo'];
-                                if (($i-1) == count($_POST)){?>
+                                if (($i) == count($_POST)){?>
                                      <hr class="linea-fac"/>
                                 <?php }}?>
+                                     <input type="hidden" name="cant-fac" value="<?php echo $i?>"/>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-first-name">Fecha</label>
                                     <input type="text" name="fecha-desc" placeholder="Fecha..." class="form-fecha form-control" id="fecha-desc" readonly="" value="<?php echo date("d/m/Y")?>">
-                                    <input type="hidden" name="form-fecha" id="form-fecha" value="<?php echo date("Ymd")?>">
+                                    <input type="hidden" name="form-fecha" id="form-fecha" value="<?php echo date("Y-m-d")?>">
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-first-name">Empresa</label>
                                     <input type="text" name="form-empresa" placeholder="Empresa..." class="form-empresa form-control" id="form-empresa" readonly="" value="<?php echo $empresa?>">
                                     <button id="btn-empresas" class="btn btn-primary btn-sm boton-empresa"><i class="fa fa-search"></i></button>
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="form-uni-neg">Uni. Neg</label>
+                                    <select name="form-uni-neg" placeholder="Uni. Neg..." class="form-uni-neg form-control" id="form-uni-neg" <?php echo (isset($uniNeg))?'readonly':''?>>
+                                        <option value="1" <?=(isset($uniNeg) && $uniNeg == 1)?'selected':''?>>Sistemas</option>
+                                        <option value="3" <?=(isset($uniNeg) && $uniNeg == 3)?'selected':''?>>Revista</option>
+                                        <option value="4" <?=(isset($uniNeg) && $uniNeg == 4)?'selected':''?>>Dami&aacute;n</option>
+                                        <option value="5" <?=(isset($uniNeg) && $uniNeg == 5)?'selected':''?>>Liliana</option>
+                                        <option value="6" <?=(isset($uniNeg) && $uniNeg == 6)?'selected':''?>>Consultor&iacute;a</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-importe">Importe</label>
@@ -97,7 +109,6 @@
                                 Cuenta: <p class="resumen resumen-cuenta"></p>
                                 Importe: <p class="resumen resumen-importe"></p>
 
-                                <input type="hidden" name="mode" value="<?php echo $_GET['mode']?>">
                                 <button type="button" class="btn btn-previous">Atr&aacute;s</button>
                                 <button type="submit" class="btn">Confirmar</button>
                             </div>
