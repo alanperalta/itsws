@@ -17,7 +17,7 @@ if(!$do_login['error']) {
                 $dataset['FECHA']= $_POST['form-fecha'];
                 $dataset['FK_ERP_T_COM_VEN'] = $tipCom;
                 $dataset['FK_ERP_EMPRESAS'] = $_POST['form-empresa'];
-                $dataset['OBSERVACIONES'] = 'WS - '.$_POST['form-observaciones'];
+                $dataset['OBSERVACIONES'] = $_POST['form-observaciones'];
                 $dataset['FK_ERP_UNI_NEG'] = (int)$_POST['form-uni-neg'];
                 
                 //Detalle de imputaciones
