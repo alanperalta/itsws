@@ -27,7 +27,7 @@
                                 <?php foreach ($getDataResult['data'] as $key => $row_item) { 
                                     if((string)$row_item['FK_ERP_EMPRESAS'] == $row['EMPRESA']){?>
                                 <tr>
-                                    <td><?= date('d/m/Y',strtotime($row_item['FECHA']))?></td>
+                                    <td><?=$row_item['FECHA']?></td>
                                     <td><?=$row_item['FK_ERP_COM_COM']?></td>
                                     <td><?=$row_item['IMPORTE']?></td>
                                     <td><?=$row_item['SALDO']?></td>

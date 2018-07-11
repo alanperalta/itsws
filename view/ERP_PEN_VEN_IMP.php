@@ -44,7 +44,7 @@
                                 <?php foreach ($getDataResult['data'] as $key => $row_item) { 
                                     if((string)$row_item['FK_ERP_EMPRESAS'] == $row['EMPRESA']){?>
                                 <tr>
-                                    <td><?= date('d/m/Y',strtotime($row_item['FECHA']))?></td>
+                                    <td><?=$row_item['FECHA']?></td>
                                     <td><?=$row_item['FK_ERP_COM_VEN']?></td>
                                     <td><?=number_format($row_item['IMPORTE'],2,",",".")?></td>
                                     <td class="saldo"><?=number_format($row_item['SALDO'],2,",",".")?></td>
