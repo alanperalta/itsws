@@ -110,7 +110,7 @@
                                 Importe: <p class="resumen resumen-importe"></p>
 
                                 <button type="button" class="btn btn-previous">Atr&aacute;s</button>
-                                <button type="submit" class="btn">Confirmar</button>
+                                <button type="submit" id="confirmarRecibo" class="btn">Confirmar</button>
                             </div>
                         </fieldset>
 
@@ -135,10 +135,7 @@
           <div class="modal-body">
               <input type="text" name="modal-input-empresa" placeholder="Buscar empresa..." class="form-control" id="modal-input-empresa">
               <ul id="lista-empresas">
-                  
               </ul>
-              <br/>
-              <button id="btn-modal-empresa" class="btn btn-lg btn-primary" onclick="seleccionarEmpresa()" disabled="">Aceptar</button>
           </div>
       </div>
     </div>

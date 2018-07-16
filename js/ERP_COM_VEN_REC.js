@@ -28,7 +28,7 @@ $('#modal-input-empresa').keypress(function(event) {
             fila = '';
             //Recorro el JSON y agrego un item de lista por cada empresa encontrada
             $.each(response, function(i, member) {
-                fila += '<li class="ui-widget-content item-empresa" id="'+response[i].ID+'">'+response[i].DESCRIPCION+'</li>';
+                fila += '<li class="ui-widget-content item-empresa" onclick="seleccionarEmpresa()" id="'+response[i].ID+'">'+response[i].DESCRIPCION+'</li>';
             });
             $('#lista-empresas').html(fila);
             $('#lista-empresas').selectable({

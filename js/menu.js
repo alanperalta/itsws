@@ -1,4 +1,4 @@
-function cargarContenido(id, filtro = 0){
+function cargarContenido(id, filtro){
     $parametros = '';
     if(filtro && id == 'ERP_PEN_VEN_IMP'){
         $parametros = '?uniNeg='+filtro;

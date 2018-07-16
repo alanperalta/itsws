@@ -122,9 +122,23 @@ jQuery(document).ready(function() {
       $.ajax({
           url: $(this).attr('action'),
           data: $(this).serialize(),
-          type: 'POST'
-      }).done(function(response){
-          alert(response);
-      });
+          type: 'POST',
+          dataType: 'json',
+          beforeSend: function (xhr) {
+            $('#confirmarRecibo').html('Procesando <i class="fa fa-refresh fa-spin" style="font-size:24px"></i>');
+            $('#confirmarRecibo').prop('disabled', true);
+        }
+      }).done( function (response) {
+        if(response.error){
+            alert(response.message);
+            $('#confirmarRecibo').prop('disabled', false);
+            $('#confirmarRecibo').html('Confirmar');
+        }else {
+           $('#confirmarRecibo').html('<i class="fa fa-check style="font-size:24px"></i>');
+           setTimeout(function(){
+             $('.contenido').load('../view/ERP_COM_VEN_REC.php');
+           }, 1500);
+        }
+    });
   });
 });

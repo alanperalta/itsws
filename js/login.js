@@ -26,14 +26,14 @@ var pass = $("input[name=password]");
                         }
                         }
                     );
-                    
-                    //show avatar
-                    $(".avatar").css({
-                        "background-image": "url('http://api.randomuser.me/0.3.2/portraits/women/35.jpg')"
-                    });
                 } else {
                     $("#output").removeClass(' alert alert-success');
                     $("#output").addClass("alert alert-danger animated fadeInUp").html("Complete los campos");
                 }
             });
+            
+                    //show avatar
+                    $(".avatar").css({
+                        "background-image": "url('../includes/img/logo.jpg')"
+                    });
 });
