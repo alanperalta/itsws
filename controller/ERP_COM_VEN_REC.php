@@ -26,7 +26,6 @@ if(!$do_login['error']) {
                     $dataset['ERP_IMP_VEN'][$i]['FK_ERP_DEB_VEN']= $_POST['form-fac-'.$i];
                     $dataset['ERP_IMP_VEN'][$i]['IMP_COT']= (float)$_POST['form-imp-fac-'.$i];
                     $imputado += (float)$_POST['form-imp-fac-'.$i];
-                    $i++;
                 }
                 $dataset['IMP_A_CTA'] = (float)($_POST['form-importe'] - $imputado);
                 
