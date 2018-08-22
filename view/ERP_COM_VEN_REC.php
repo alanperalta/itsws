@@ -74,7 +74,7 @@
                             <div class="form-top">
                                     <div class="form-top-left">
                                             <h3>Paso 2 / 3</h3>
-                                    <p>Forma de pago:</p>
+                                    <p>Forma de pago:</p> 
                                     </div>
                                     <div class="form-top-right">
                                             <i class="fa fa-money"></i>
@@ -83,10 +83,11 @@
                         <div class="form-bottom">
                                     <div class="form-group">
                                             <label class="sr-only" for="cuenta">Cuenta</label>
+                                            Saldo: $<span id="saldo-cuenta"></span>
+                                            <span id="saldo-cuenta-original" style="display: none"></span>
                                             <ul id="lista-cuentas">
 
                                             </ul>
-                                            <input type="hidden" name="form-cuenta" class="form-cuenta form-control" id="form-cuenta">
                                     </div>
                                     <button type="button" class="btn btn-previous">Atr&aacute;s</button>
                                     <button type="button" class="btn btn-next next2" disabled="">Siguiente</button>

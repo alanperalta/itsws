@@ -59,3 +59,22 @@ $('.fac-imp').on('change', function(){
     });
     $('#form-importe').val(total);
 });
+
+function saldoCuenta(){
+  saldo = parseFloat($('#saldo-cuenta-original').html());
+  total = 0.00;
+  $('.form-cuenta').each(function(){
+      total += (parseFloat($(this).val()) || 0); //Convierte NaN a 0
+  });
+  saldo -= total;
+  $('#saldo-cuenta').html(saldo.toFixed(2));
+  
+  if(saldo){
+    $('button.next2').prop('disabled', true);
+  }else $('button.next2').prop('disabled', false);
+};
+
+function completaSaldo(e){
+    e.value = (parseFloat($('#saldo-cuenta').html()) || 0) + (parseFloat(e.value) || 0);
+    saldoCuenta();
+}

@@ -27,7 +27,7 @@ jQuery(document).ready(function() {
     	var parent_fieldset = $(this).parents('fieldset');
     	var next_step = true;
     	
-    	parent_fieldset.find('input.form-empresa, input.form-fecha, input.form-importe, input.form-cuenta').each(function() {
+    	parent_fieldset.find('input.form-empresa, input.form-fecha, input.form-importe').each(function() {
     		if( $(this).val() == "" ) {
     			$(this).addClass('input-error');
     			next_step = false;
@@ -47,6 +47,8 @@ jQuery(document).ready(function() {
         
     	if( next_step ) {
             if($(this).hasClass("next1")){
+                $('#saldo-cuenta').html($('#form-importe').val());
+                $('#saldo-cuenta-original').html($('#form-importe').val());
                 $.ajax({
                     url: '../controller/APP_CUENTAS.php',
                     type: 'post',
@@ -60,18 +62,9 @@ jQuery(document).ready(function() {
                     fila = '';
                     //Recorro el JSON y agrego un item de lista por cada cuenta encontrada
                     $.each(response, function(i, member) {
-                        fila += '<li class="ui-widget-content item-cuenta" id="'+response[i].ID+'"">'+response[i].DESCRIPCION+'</li>';
+                        fila += '<li class="item-cuenta">'+response[i].DESCRIPCION+': <input class="form-cuenta" name="form-cuenta-'+response[i].ID+'" type="number" onchange="saldoCuenta();" ondblclick="completaSaldo(this);"/></li>';
                     });
                     $('#lista-cuentas').html(fila);
-                    $('#lista-cuentas').selectable({
-                        selected: function(event, ui){
-                            seleccion = $('li.item-cuenta.ui-selected').length;
-                            if(seleccion === 1){
-                                $('.next2').prop("disabled", false);
-                                $('#form-cuenta').val($('li.item-cuenta.ui-selected').attr("id"));
-                            }else $('.next2').prop("disabled", true);
-                        }
-                    });
                 });
             }
             //Cargo resumen en el 3er paso
