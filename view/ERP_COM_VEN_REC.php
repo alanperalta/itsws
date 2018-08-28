@@ -44,12 +44,12 @@
                         ?>
                              <input type="hidden" name="cant-fac" value="<?php echo $i?>"/>
                         <div class="form-group">
-                            <label class="sr-only" for="form-first-name">Fecha</label>
+                            <label class="sr-only" for="fecha-desc">Fecha</label>
                             <input type="text" name="fecha-desc" placeholder="Fecha..." class="form-fecha form-control" id="fecha-desc" readonly="" value="<?php echo date("d/m/Y")?>">
                             <input type="hidden" name="form-fecha" id="form-fecha" value="<?php echo date("Y-m-d")?>">
                         </div>
                         <div class="form-group">
-                            <label class="sr-only" for="form-first-name">Empresa</label>
+                            <label class="sr-only" for="form-empresa">Empresa</label>
                             <input type="text" name="form-empresa" placeholder="Empresa..." class="form-empresa form-control" id="form-empresa" readonly="" value="<?php echo $empresa?>">
                             <button type="button" id="btn-empresas" class="btn btn-primary btn-sm boton-empresa"><i class="fa fa-search"></i></button>
                         </div>
@@ -99,6 +99,9 @@
 
                             </ul>
                         </div>
+                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#ModalLoginForm">
+                            Agregar cheque
+                        </button>
                         <button type="button" class="btn btn-previous">Atr&aacute;s</button>
                         <button type="button" class="btn btn-next next2" disabled="">Siguiente</button>
                     </div>
@@ -131,7 +134,7 @@
         
 <script src="../js/stepform.js"></script>
 
-<!-- Modal -->
+<!-- Modal empresa-->
   <div class="modal fade" id="modal-empresas" role="dialog">
     <div class="modal-dialog">
         
@@ -149,3 +152,70 @@
       </div>
     </div>
   </div>
+
+<!-- Modal Cheques -->
+<div id="ModalLoginForm" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Valores de terceros</h1>
+            </div>
+            <div class="modal-body">
+                <form role="form" method="POST" action="">
+                    <div class="form-group">
+                        <label class="control-label">Banco</label>
+                        <div>
+                            <input type="email" class="form-control input-lg" name="email" value="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">N&uacute;mero</label>
+                        <div>
+                            <input type="number" class="form-control input-lg" name="password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Importe</label>
+                        <div>
+                            <input type="password" class="form-control input-lg" name="password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Tipo</label>
+                        <div>
+                            <select class="form-control input-lg" name="password">
+                                <option value="C">Com&uacute;n</option>
+                                <option value="D" selected>Diferido</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="remember"> No a la orden
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="form-first-name">Fecha de emisi&oacute;n</label>
+                        <input type="text" name="fecha-desc" placeholder="Fecha..." class="form-fecha form-control" id="fecha-desc" readonly="" value="<?php echo date("d/m/Y")?>">
+                        <input type="hidden" name="form-fecha" id="form-fecha" value="<?php echo date("Y-m-d")?>">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="form-first-name">Fecha de dep&oacute;sito</label>
+                        <input type="text" name="fecha-desc" placeholder="Fecha..." class="form-fecha form-control" id="fecha-desc" readonly="" value="<?php echo date("d/m/Y")?>">
+                        <input type="hidden" name="form-fecha" id="form-fecha" value="<?php echo date("Y-m-d")?>">
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" value="$('#form-empresa').val()"/>
+                        <div>
+                            <button type="submit" class="btn btn-success">Aceptar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
