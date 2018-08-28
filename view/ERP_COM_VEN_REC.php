@@ -117,8 +117,8 @@
                     <div class="form-bottom resumen">
                         Fecha: <p class="resumen resumen-fecha"></p>
                         Empresa: <p class="resumen resumen-empresa"></p>
-                        Cuenta: <p class="resumen resumen-cuenta"></p>
-                        Importe: <p class="resumen resumen-importe"></p>
+                        Detalle de Cuentas: <p class="resumen resumen-cuenta"></p>
+                        Total: $<p class="resumen resumen-importe"></p>
 
                         <button type="button" class="btn btn-previous">Atr&aacute;s</button>
                         <button type="submit" id="confirmarRecibo" class="btn">Confirmar</button>
