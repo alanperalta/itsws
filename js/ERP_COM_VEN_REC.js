@@ -50,7 +50,9 @@ $('#modal-input-empresa').keypress(function(event) {
 $('#btn-empresas').on("click", function(e){
     e.preventDefault();
     $('#modal-empresas').modal("show");
-    $('#modal-input-empresa').focus();
+    setTimeout(function(){
+        $('#modal-input-empresa').focus();
+    }, 500);
 });
 
 $('.fac-imp').on('change', function(){
