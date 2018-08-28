@@ -33,9 +33,14 @@ if(!$do_login['error']) {
                 $dataset['ERP_DET_TES'][0]['FK_ERP_CUE_TES']= (int)$getDataResult['data'][0]['FK_ERP_CUE_TES'];
                 $dataset['ERP_DET_TES'][0]['TIPO']= 'H';
                 $dataset['ERP_DET_TES'][0]['UNIDADES']= (float)$_POST['form-importe'];
-                $dataset['ERP_DET_TES'][1]['FK_ERP_CUE_TES']= (int)$_POST['form-cuenta'];
-                $dataset['ERP_DET_TES'][1]['TIPO']= 'D';
-                $dataset['ERP_DET_TES'][1]['UNIDADES']= (float)$_POST['form-importe'];
+                
+                $indice = 0;
+                do{
+                    $dataset['ERP_DET_TES'][$indice+1]['FK_ERP_CUE_TES']= (int)$_POST["cuenta-id-$indice"];
+                    $dataset['ERP_DET_TES'][$indice+1]['TIPO']= 'D';
+                    $dataset['ERP_DET_TES'][$indice+1]['UNIDADES']= (float)$_POST["form-cuenta-$indice"];
+                    $indice++;
+                }while(isset($_POST["form-cuenta-$indice"]) && ($_POST["form-cuenta-$indice"]) != 0);
 
                 $post = ItsPostData($userSession, 'ERP_COM_VEN_REC', $dataset);
                 ItsLogout($userSession);

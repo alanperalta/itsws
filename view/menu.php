@@ -29,8 +29,8 @@
                           <a href="#"><i class="fa fa-shopping-cart fa-lg"></i> Ventas <span class="arrow"></span></a>
                         </li>
                         <ul class="sub-menu collapse" id="ventas">
-                            <li class="active"><a href="#" onclick="cargarContenido('ERP_PEN_VEN_IMP')"><i class="fa fa-calendar fa-lg"></i>Pendientes de imputaci&oacute;n</a></li>
-                            <li class="active"><a href="#" onclick="cargarContenido('ERP_COM_VEN_REC')"><i class="fa fa-arrow-left fa-lg"></i>Recibos</a></li>
+                            <li class="active"><a href="#" onclick="cargarContenido('ERP_PEN_VEN_IMP'<?=(strtoupper($_SESSION['user']) == 'VICTORIA')?',3':''?>)"><i class="fa fa-calendar fa-lg"></i>Pendientes de imputaci&oacute;n</a></li>
+                            <li class="active"><a href="#" onclick="cargarContenido('ERP_COM_VEN_REC'<?=(strtoupper($_SESSION['user']) == 'VICTORIA')?',3':''?>)"><i class="fa fa-arrow-left fa-lg"></i>Recibos</a></li>
                         </ul>
 
 
@@ -38,7 +38,7 @@
                           <a href="#"><i class="fa fa-gift fa-lg"></i> Compras <span class="arrow"></span></a>
                         </li>  
                         <ul class="sub-menu collapse" id="compras">
-                        <li class="active"><a href="#" onclick="cargarContenido('ERP_PEN_COM_IMP')"><i class="fa fa-calendar fa-lg"></i>Pendientes de imputaci&oacute;n</a></li>
+                        <li class="active"><a href="#" onclick="cargarContenido('ERP_PEN_COM_IMP'<?=(strtoupper($_SESSION['user']) == 'VICTORIA')?',3':''?>)"><i class="fa fa-calendar fa-lg"></i>Pendientes de imputaci&oacute;n</a></li>
                         </ul>
 
                         <li data-toggle="collapse" data-target="#tesoreria" class="collapsed">

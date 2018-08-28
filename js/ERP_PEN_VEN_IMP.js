@@ -36,7 +36,6 @@ $('#gen-recibo').on('click', function(){
 //Genera recibo
 function generarRecibo(){
     var fac = [];
-    console.log('x');
     $('.tilde-recibo:checked').each(function(){
         ele = {};
         valores = ($(this).val()).split('_');

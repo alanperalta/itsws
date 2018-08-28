@@ -2,7 +2,7 @@
 <script type="text/javascript" src="../js/ERP_PEN_VEN_IMP.js"></script>
 <div class="container">
 	<div class="panel panel-default">
-        <div class="panel-heading">
+        <div class="panel-heading" <?=(strtoupper($_SESSION['user']) == 'VICTORIA')?'style="display:none"':''?>>
             <h3 class="panel-title">Pendientes de imputaci&oacute;n de ventas</h3>
             <select onchange="cargarContenido('ERP_PEN_VEN_IMP',this.value)">
                 <option value="0" <?=(isset($_GET['uniNeg']) && $_GET['uniNeg'] == 0)?'selected':''?>>Todo</option>

@@ -4,7 +4,7 @@ session_start();
 $do_login = ItsLogin();
     if(!$do_login['error']) {
     $userSession = $do_login['usersession'];
-    $getDataResult = ItsGetData($userSession, 'ERP_EMPRESAS', '10', "DESCRIPCION LIKE '%".$_POST['clave']."%'", 'DESCRIPCION ASC');
+    $getDataResult = ItsGetData($userSession, 'ERP_EMPRESAS', '10', "DESCRIPCION LIKE '%".$_POST['clave']."%'".$_POST['filtro'], 'DESCRIPCION ASC');
     if(!$getDataResult['error']) {
         $data = array();
         foreach ($getDataResult['data'] as $row){

@@ -12,7 +12,8 @@ $('#modal-input-empresa').keypress(function(event) {
     if (event.keyCode === 10 || event.keyCode === 13){ 
         event.preventDefault();
         var parametros = {
-            'clave':$('#modal-input-empresa').val()
+            clave:$('#modal-input-empresa').val(),
+            filtro: ' AND CLIENTE = 1'
         };
         $.ajax({
             data:  parametros,
@@ -78,3 +79,10 @@ function completaSaldo(e){
     e.value = (parseFloat($('#saldo-cuenta').html()) || 0) + (parseFloat(e.value) || 0);
     saldoCuenta();
 }
+
+//Previene que al apretar enter en cualquier input se ejecute el submit
+$(document).on("keypress", ":input:not(textarea)", function(event) {
+    if (event.keyCode == 13) {
+        event.preventDefault();
+    }
+});

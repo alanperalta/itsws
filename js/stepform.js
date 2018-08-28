@@ -62,14 +62,14 @@ jQuery(document).ready(function() {
                     fila = '';
                     //Recorro el JSON y agrego un item de lista por cada cuenta encontrada
                     $.each(response, function(i, member) {
-                        fila += '<li class="item-cuenta">'+response[i].DESCRIPCION+': <input class="form-cuenta" name="form-cuenta-'+response[i].ID+'" type="number" onchange="saldoCuenta();" ondblclick="completaSaldo(this);"/></li>';
+                        fila += '<li class="item-cuenta">'+response[i].DESCRIPCION+': <input class="form-cuenta" name="form-cuenta-'+i+'" type="number" step=".01" min="0" onchange="saldoCuenta();" ondblclick="completaSaldo(this);"/><input type="hidden" name="cuenta-id-'+i+'" value="'+response[i].ID+'"/></li>';
                     });
                     $('#lista-cuentas').html(fila);
                 });
             }
             //Cargo resumen en el 3er paso
             if($(this).hasClass("next2")){
-                $('.resumen-cuenta').html($('#form-cuenta').val());
+                //$('.resumen-cuenta').html($('#form-cuenta').val());
                 $('.resumen-empresa').html($('#form-empresa').val());
                 $('.resumen-fecha').html($('#fecha-desc').val());
                 $('.resumen-importe').html($('#form-importe').val());
