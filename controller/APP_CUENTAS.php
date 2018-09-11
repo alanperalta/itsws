@@ -10,7 +10,7 @@ if(!$getDataResult['error']) {
     $data = array();
     foreach ($getDataResult['data'] as $row){
         $id = (string)$row['ID'];
-        $data[] = array('ID' => $id, 'DESCRIPCION' => (string)$row['DESCRIPCION']);
+        $data[] = array('ID' => $id, 'DESCRIPCION' => (string)$row['DESCRIPCION'], 'TIPO' => (string)$row['TIPO']);
     }
     ItsLogout($userSession);
     $json = json_encode($data);

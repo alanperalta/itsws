@@ -17,21 +17,7 @@
     cursor: pointer; 
 }
 
-.form-empresa{
-    width: 80%;
-    display: inline-block;
-}
-
-.form-empresa:hover{
-    cursor: default;
-}
-
-.boton-empresa{
-    display: inline-block;
-    float: right;
-}
-
-.form-fecha:hover{
+.form-fecha:hover, .form-empresa:hover{
     cursor: pointer;
 }
 /*Multi-step*/
@@ -282,4 +268,8 @@ only screen and (                min-resolution: 2dppx) {
 
 .linea-fac{
     border: 1px solid black;
+}
+
+.cuenta-desc{
+    display: block;
 }

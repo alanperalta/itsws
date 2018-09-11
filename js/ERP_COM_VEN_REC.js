@@ -47,7 +47,7 @@ $('#modal-input-empresa').keypress(function(event) {
 });
 
 //Muestro pop-up de empresas
-$('#btn-empresas').on("click", function(e){
+$('#form-empresa').on("click", function(e){
     e.preventDefault();
     $('#modal-empresas').modal("show");
     setTimeout(function(){

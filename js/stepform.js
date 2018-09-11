@@ -62,7 +62,7 @@ jQuery(document).ready(function() {
                     fila = '';
                     //Recorro el JSON y agrego un item de lista por cada cuenta encontrada
                     $.each(response, function(i, member) {
-                        fila += '<li class="item-cuenta"><span class="cuenta-desc" >'+response[i].DESCRIPCION+'</span>: <input class="form-cuenta" name="form-cuenta-'+i+'" id="form-cuenta-'+i+'" type="number" step=".01" min="0" onchange="saldoCuenta();" ondblclick="completaSaldo(this);"/><input type="hidden" name="cuenta-id-'+i+'" value="'+response[i].ID+'"/></li>';
+                        fila += '<li class="item-cuenta"><span class="cuenta-desc">'+response[i].DESCRIPCION+':</span> <input class="form-cuenta" name="form-cuenta-'+i+'" id="form-cuenta-'+i+'" type="number" step=".01" min="0" onchange="saldoCuenta();" ondblclick="completaSaldo(this);"/><input type="hidden" name="cuenta-id-'+i+'" value="'+response[i].ID+'"/></li>';
                     });
                     $('#lista-cuentas').html(fila);
                 });
@@ -72,7 +72,7 @@ jQuery(document).ready(function() {
                 resumenCuenta = '';
                 $('.cuenta-desc').each(function(i, member) {
                     if($('#form-cuenta-'+i).val() != 0){
-                        resumenCuenta += '<p>'+$(this).html()+': $'+parseFloat($('#form-cuenta-'+i).val()).toFixed(2)+'</p>';
+                        resumenCuenta += '<p>'+$(this).html()+' $'+parseFloat($('#form-cuenta-'+i).val()).toFixed(2)+'</p>';
                     }
                 });
                 $('.resumen-cuenta').html(resumenCuenta);
