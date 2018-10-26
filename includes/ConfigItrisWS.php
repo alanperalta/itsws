@@ -3,7 +3,7 @@
         
         //Configuraciones de WS
         //-----------------------------------------------
-	$ws = 'http://srv01.tgroup.com.ar:8080';
+	$ws = 'http://srv01.tgroup.com.ar:85';
         //------------------------------------------------
         
         
@@ -70,7 +70,7 @@
             $result = curl_exec($ch);
             curl_close($ch);
             
-            return json_decode(utf8_encode($result), TRUE);
+            return json_decode($result, TRUE);
         }
         
         function ItsPostData($usersession, $class, $data){
@@ -89,7 +89,7 @@
 
             curl_close($ch);
             
-            return json_decode(utf8_encode($result), TRUE);
+            return json_decode($result, TRUE);
         }
         
         function ItsModifyData($usersession, $class, $id, $data){
@@ -109,7 +109,7 @@
 
             curl_close($ch);
             
-            return json_decode(utf8_encode($result), TRUE);
+            return json_decode($result, TRUE);
         }
         
         function ItsDeleteData($usersession, $class, $id){
